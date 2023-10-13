@@ -1,0 +1,9 @@
+.navbar-brand{
+    margin-left: 20px;
+}
+
+html
+{
+    width: 750px; /* max width */
+    height: 600px; /* max height */
+}
