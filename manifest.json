@@ -3,12 +3,11 @@
   "version": "0.0.1",
   "description": "This extension helps you to stay focussed while building you animal park",
   "manifest_version": 3,
-  "authors": [
-    "Pichler Mathias",
-    "Wildauer Mariella"
-  ],
   "action": {
     "default_popup": "html/index.html",
     "default_title": "Animal Focus Park"
+  },
+  "background": {
+    "service_worker": "db/service_worker.js"
   }
 }
