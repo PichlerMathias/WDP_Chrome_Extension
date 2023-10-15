@@ -91,3 +91,22 @@ function getAllAnimals(callback) {
         callback([]);
     };
 }
+
+
+function getAnimalImageById(animalId, callback) {
+    getAnimalById(animalId, function(animal) {
+        if (animal) {
+            // Check if the animal object has an 'imgPath' property
+            if (animal) {
+                // Return the imgPath
+                callback(animal.animalPath);
+            } else {
+                // Animal object doesn't have imgPath property
+                callback(null);
+            }
+        } else {
+            // Animal not found
+            callback(null);
+        }
+    });
+}

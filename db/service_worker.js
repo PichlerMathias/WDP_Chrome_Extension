@@ -128,9 +128,9 @@ function insertCountdown(date, length, animalId) {
 
 function initDatabase()
 {
-    //deleteZooDatabase();
+    deleteZooDatabase();
 
-    if(createZooDatabase()){
+    if(createZooDatabase() || true){
         console.log("insert values");
         insertAnimals();
 
