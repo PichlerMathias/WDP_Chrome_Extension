@@ -1,4 +1,5 @@
 getAllAnimals(function (animals){
+
     let table = document.getElementById("imageTable");
 
     animals.forEach((animal) => {

@@ -16,9 +16,17 @@ function createZooDatabase() {
     request.onupgradeneeded = function (event) {
         const db = event.target.result;
 
-        // Create the "animals" object store with a keyPath and an index
+        // animals table
         const objectStoreAnimals = db.createObjectStore('animals', {keyPath: 'animalId'});
         objectStoreAnimals.createIndex('animalPath', 'animalPath', {unique: true});
+
+        // countdown table
+        const objectStoreCountdown = db.createObjectStore('countdowns', {keyPath: 'countDownId', autoIncrement: true});
+        objectStoreCountdown.createIndex('date', 'date', {unique: false});
+        objectStoreCountdown.createIndex('length', 'length', {unique: false});
+        objectStoreCountdown.createIndex('animalId', 'animalId', {unique: false});
+
+        return true;
     };
 
     request.onsuccess = function () {
@@ -28,6 +36,8 @@ function createZooDatabase() {
     request.onerror = function (event) {
         console.error('Error creating zooDb:', event.target.error);
     };
+
+    return false;
 }
 
 const inputArray = [
@@ -60,10 +70,10 @@ const inputArray = [
 ];
 
 function getAnimals() {
-   return inputArray.map((animalPath, index) => ({
-       animalId: index + 1,
-       animalPath: animalPath+".svg"
-   }));
+    return inputArray.map((animalPath, index) => ({
+        animalId: index + 1,
+        animalPath: animalPath + ".svg"
+    }));
 }
 
 function insertAnimals() {
@@ -90,7 +100,47 @@ function insertAnimals() {
     };
 }
 
+function insertCountdown(date, length, animalId) {
+    const request = indexedDB.open('zooDb');
 
-deleteZooDatabase()
-createZooDatabase();
-insertAnimals();
+    request.onsuccess = function (event) {
+        const db = event.target.result;
+        const transaction = db.transaction(['countdowns'], 'readwrite');
+        const objectStore = transaction.objectStore('countdowns');
+
+        const countdownRecord = {
+            date: date,
+            length: length,
+            animalId: animalId
+        };
+
+        const addRequest = objectStore.add(countdownRecord);
+
+        addRequest.onsuccess = function () {
+            console.log('Countdown inserted successfully');
+        };
+
+        addRequest.onerror = function (event) {
+            console.error('Error inserting countdown:', event.target.error);
+        };
+    };
+}
+
+function initDatabase()
+{
+    deleteZooDatabase();
+
+    if(createZooDatabase() || true){
+        console.log("insert values");
+        insertAnimals();
+
+        insertCountdown(new Date(2023, 10, 1), 15, 1);
+        insertCountdown(new Date(2023, 10, 3), 5, 3);
+        insertCountdown(new Date(2023, 10, 7), 25, 17);
+        insertCountdown(new Date(2023, 10, 7), 50, 6);
+        insertCountdown(new Date(2023, 10, 8), 15, 13);
+        insertCountdown(new Date(2023, 10, 11), 5, 14);
+    }
+}
+
+initDatabase();
