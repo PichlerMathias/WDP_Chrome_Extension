@@ -15,7 +15,8 @@
 
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <a class="navbar-brand" href="index.html">Focus Zoo</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,68 +41,111 @@
 
     <section>
         <h1>Unlock Animal</h1>
-
-        <div id="timer" style="display: none;">30:00</div>
-        <button id="start5" class="btn btn-primary">5 Minuten</button>
-        <button id="start10" class="btn btn-primary">10 Minuten</button>
-        <button id="start25" class="btn btn-primary">25 Minuten</button>
-        <button id="start50" class="btn btn-primary">50 Minuten</button>
+        <script src="../db/countdown.js"></script>
+        <div id="timer" style="display: none;"></div>
+        <button id="start1" class="btn btn-primary">3 Seconds TESTONLY</button>
+        <button id="start5" class="btn btn-primary">5 Minutes</button>
+        <button id="start10" class="btn btn-primary">10 Minutes</button>
+        <button id="start25" class="btn btn-primary">25 Minutes</button>
+        <button id="start50" class="btn btn-primary">50 Minutes</button>
+        <button id="cancel" class="btn btn-primary">Cancel</button>
 
         <script>
+
             timer = document.getElementById("timer");
+            button1 = document.getElementById("start1");
             button5 = document.getElementById("start5");
             button10 = document.getElementById("start10");
             button25 = document.getElementById("start25");
             button50 = document.getElementById("start50");
-            const buttons = [button5, button10, button25, button50];
+            cancel = document.getElementById("cancel");
+            const buttons = [button1, button5, button10, button25, button50];
 
-            button5.addEventListener("click", function() {
+            button1.addEventListener("click", function () {
+                startTimer(0.05);
+            });
+            button5.addEventListener("click", function () {
                 startTimer(5);
             });
-            button10.addEventListener("click",function() {
+            button10.addEventListener("click", function () {
                 startTimer(10);
             });
-            button25.addEventListener("click", function() {
+            button25.addEventListener("click", function () {
                 startTimer(25);
             });
-            button50.addEventListener("click", function() {
+            button50.addEventListener("click", function () {
                 startTimer(50);
+            });
+            cancel.addEventListener("click", function () {
+                cancelTimer();
             });
 
 
+            let timeLeft = 0;
+            loadTimerIfRunning();
 
-            let timeLeft = 30 * 60;
             // Function to update the timer display
             function updateTimer() {
-
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
                 timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
             }
 
+            function loadTimerIfRunning() {
+                let remainingSeconds = getRemainingSeconds();
+                if (remainingSeconds) {
+                    startClock(remainingSeconds);
+                }
+            }
+
             // Function to start the countdown
             function startTimer(minutes) {
-                setButtonShowing(false);
-                timer.style.display = "block";
+                setCurrentCountDownObject(new Date(), minutes);
 
-                timeLeft = minutes * 60;
+                startClock(minutes * 60);
+            }
+
+            function startClock(seconds) {
+                showTimer();
+
+                timeLeft = seconds;
+                updateTimer();
                 const timerInterval = setInterval(function () {
                     if (timeLeft > 0) {
                         timeLeft--;
                         updateTimer();
                     } else {
+                        timerFinished();
                         clearInterval(timerInterval);
-                        alert("Finsihed");
                     }
                 }, 1000); // Update the timer every second (1000 milliseconds)
             }
 
-            function setButtonShowing(isActive){
-                const displayValue = isActive ? "block" : "none";
-
+            function showTimer() {
                 buttons.forEach(button => {
-                    button.style.display = displayValue;
+                    button.style.display = "none";
                 });
+                timer.style.display = "block";
+                cancel.style.display = "block";
+
+            }
+
+            function showButtons() {
+                buttons.forEach(button => {
+                    button.style.display = "block";
+                });
+                timer.style.display = "none";
+                cancel.style.display = "none";
+            }
+
+            function timerFinished() {
+                showButtons();
+                insertCountDownObject();
+            }
+
+            function cancelTimer(){
+                deleteCountDownItem();
+                showButtons();
             }
         </script>
     </section>

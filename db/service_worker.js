@@ -14,6 +14,8 @@ function createZooDatabase() {
     const request = indexedDB.open('zooDb', 1);
 
     request.onupgradeneeded = function (event) {
+        console.log("upgrade needed");
+
         const db = event.target.result;
 
         // animals table
@@ -26,7 +28,8 @@ function createZooDatabase() {
         objectStoreCountdown.createIndex('length', 'length', {unique: false});
         objectStoreCountdown.createIndex('animalId', 'animalId', {unique: false});
 
-        return true;
+        console.log("insert animals =>");
+        insertAnimals();
     };
 
     request.onsuccess = function () {
@@ -34,10 +37,10 @@ function createZooDatabase() {
     };
 
     request.onerror = function (event) {
+        console.log("on error");
+
         console.error('Error creating zooDb:', event.target.error);
     };
-
-    return false;
 }
 
 const inputArray = [
@@ -100,47 +103,8 @@ function insertAnimals() {
     };
 }
 
-function insertCountdown(date, length, animalId) {
-    const request = indexedDB.open('zooDb');
-
-    request.onsuccess = function (event) {
-        const db = event.target.result;
-        const transaction = db.transaction(['countdowns'], 'readwrite');
-        const objectStore = transaction.objectStore('countdowns');
-
-        const countdownRecord = {
-            date: date,
-            length: length,
-            animalId: animalId
-        };
-
-        const addRequest = objectStore.add(countdownRecord);
-
-        addRequest.onsuccess = function () {
-            console.log('Countdown inserted successfully');
-        };
-
-        addRequest.onerror = function (event) {
-            console.error('Error inserting countdown:', event.target.error);
-        };
-    };
-}
-
-function initDatabase()
-{
-    deleteZooDatabase();
-
-    if(createZooDatabase() || true){
-        console.log("insert values");
-        insertAnimals();
-
-        insertCountdown(new Date(2023, 10, 1), 15, 1);
-        insertCountdown(new Date(2023, 10, 3), 5, 3);
-        insertCountdown(new Date(2023, 10, 7), 25, 17);
-        insertCountdown(new Date(2023, 10, 7), 50, 6);
-        insertCountdown(new Date(2023, 10, 8), 15, 13);
-        insertCountdown(new Date(2023, 10, 11), 5, 14);
-    }
+function initDatabase() {
+    createZooDatabase();
 }
 
 initDatabase();
