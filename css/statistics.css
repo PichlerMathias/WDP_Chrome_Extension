@@ -6,8 +6,8 @@
 }
 
 img {
-    margin-right: 10px; /* You can adjust the value to your preference */
-    margin-left: 10px; /* You can adjust the value to your preference */
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .bar {
@@ -25,5 +25,5 @@ img {
 
 .bar-row{
     display: flex;
-    align-items: center; /* Vertically center align the items */
+    align-items: center;
 }
