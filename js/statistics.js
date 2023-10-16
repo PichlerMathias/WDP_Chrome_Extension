@@ -1,8 +1,9 @@
+import * as dbCountDown from '../db/countdown.js';
 
 function getChartData() {
     let data = [];
 
-    getAllCountdowns(function (countdowns) {
+    dbCountDown.getAllCountdowns(function (countdowns) {
         countdowns.forEach((countdown) => {
 
             var date = new Date(countdown.date);
