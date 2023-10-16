@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href=../css/header.css>
     <link rel="stylesheet" href=../css/main.css>
-    <link rel="stylesheet" href=../css/statistics.css>
     <title>Contact | Ascii School</title>
+
 </head>
 
 <body>
@@ -41,15 +41,18 @@
 
 
 <main>
+
     <section>
-        <h1>Statistics Database</h1>
-        <script src="../db/animals.js"></script>
 
-        <div class="chart" id="chart">
-            <p id="loading_text">Loading Countdown data...</p>
-        </div>
+        <h1>Dev Tools</h1>
+        <p>This page allows database manipulation</p>
 
-        <script src="../js/statistics.js" type="module"></script>
+        <button id="deleteDatabase" class="btn btn-primary">Delete Database</button>
+        <button id="createDatabase" class="btn btn-primary">Create Database</button>
+        <button id="insertCountdowns" class="btn btn-primary">Insert CountDowns</button>
+
+        <script src="../db/countdown.js" type="module"></script>
+        <script type="module" src="../js/devtools.js"></script>
     </section>
 </main>
 

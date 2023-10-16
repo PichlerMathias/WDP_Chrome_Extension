@@ -1,10 +1,12 @@
+import * as countdown from '../db/countdown.js';
 
-timer = document.getElementById("timer");
-button1 = document.getElementById("start1");
-button5 = document.getElementById("start5");
-button10 = document.getElementById("start10");
-button25 = document.getElementById("start25");
-button50 = document.getElementById("start50");
+let timer = document.getElementById("timer");
+let button1 = document.getElementById("start1");
+let button5 = document.getElementById("start5");
+let button10 = document.getElementById("start10");
+let button25 = document.getElementById("start25");
+let button50 = document.getElementById("start50");
+let cancel = document.getElementById("cancel");
 const buttons = [button1, button5, button10, button25, button50];
 
 button1.addEventListener("click", function () {
@@ -22,9 +24,13 @@ button25.addEventListener("click", function () {
 button50.addEventListener("click", function () {
     startTimer(50);
 });
+cancel.addEventListener("click", function () {
+    cancelTimer();
+});
 
 
-let timeLeft = 30 * 60;
+let timeLeft = 0;
+loadTimerIfRunning();
 
 // Function to update the timer display
 function updateTimer() {
@@ -33,13 +39,24 @@ function updateTimer() {
     timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
+function loadTimerIfRunning() {
+    let remainingSeconds = countdown.getRemainingSeconds();
+    if (remainingSeconds) {
+        startClock(remainingSeconds);
+    }
+}
+
 // Function to start the countdown
 function startTimer(minutes) {
-    setCurrentCountDownObject(new Date(), minutes);
+    countdown.setCurrentCountDownObject(new Date(), minutes);
 
+    startClock(minutes * 60);
+}
+
+function startClock(seconds) {
     showTimer();
 
-    timeLeft = minutes * 60;
+    timeLeft = seconds;
     updateTimer();
     const timerInterval = setInterval(function () {
         if (timeLeft > 0) {
@@ -57,6 +74,7 @@ function showTimer() {
         button.style.display = "none";
     });
     timer.style.display = "block";
+    cancel.style.display = "block";
 
 }
 
@@ -65,9 +83,15 @@ function showButtons() {
         button.style.display = "block";
     });
     timer.style.display = "none";
+    cancel.style.display = "none";
 }
 
 function timerFinished() {
     showButtons();
-    insertCountDownObject();
+    countdown.insertCountDownObject();
+}
+
+function cancelTimer(){
+    countdown.deleteCountDownItem();
+    showButtons();
 }

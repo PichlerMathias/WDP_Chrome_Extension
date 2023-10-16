@@ -8,6 +8,7 @@
     "default_title": "Animal Focus Park"
   },
   "background": {
-    "service_worker": "db/service_worker.js"
+    "service_worker": "db/service_worker.js",
+    "type": "module"
   }
 }

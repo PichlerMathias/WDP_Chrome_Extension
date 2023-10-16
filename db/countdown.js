@@ -1,4 +1,5 @@
-function getAllCountdowns(callback) {
+
+export function getAllCountdowns(callback) {
     // Open a connection to the database
     const request = indexedDB.open('zooDb');
 
@@ -45,7 +46,7 @@ function getAllCountdowns(callback) {
     };
 }
 
-function getLockedAnimalIds(callback) {
+export function getLockedAnimalIds(callback) {
     getAllCountdowns(function (countdowns) {
         var unlockedAnimals = [];
         for (var i = 0; i <= 25; i++) {
@@ -64,7 +65,7 @@ function getLockedAnimalIds(callback) {
     });
 }
 
-function insertCountDown(date, length) {
+export function insertCountDown(date, length) {
     getLockedAnimalIds(function (lockedAnimalIds) {
 
         const request = indexedDB.open('zooDb');
@@ -97,19 +98,19 @@ function insertCountDown(date, length) {
     });
 }
 
-const countDownObjectName = "countDownObject";
+export const countDownObjectName = "countDownObject";
 
-function setCurrentCountDownObject(dateStarted, length) {
+export function setCurrentCountDownObject(dateStarted, length) {
     const countDownObject = {date: dateStarted, length: length};
 
     localStorage.setItem(countDownObjectName, JSON.stringify(countDownObject));
 }
 
-function getCurrentCountDownObject() {
+export function getCurrentCountDownObject() {
     return localStorage.getItem(countDownObjectName);
 }
 
-function getRemainingSeconds() {
+export function getRemainingSeconds() {
     var object = JSON.parse(getCurrentCountDownObject());
     if (object) {
         console.log("db: ", object.date);
@@ -120,7 +121,7 @@ function getRemainingSeconds() {
     return null;
 }
 
-function insertCountDownIfFinished() {
+export function insertCountDownIfFinished() {
     var object = JSON.parse(getCurrentCountDownObject());
     if (object) {
         const startTime = new Date();
@@ -136,11 +137,11 @@ function insertCountDownIfFinished() {
     }
 }
 
-function deleteCountDownItem(){
+export function deleteCountDownItem(){
     localStorage.removeItem(countDownObjectName);
 }
 
-function insertCountDownObject() {
+export function insertCountDownObject() {
     var object = JSON.parse(getCurrentCountDownObject());
     if (object) {
         insertCountDown(object.date, object.length);
