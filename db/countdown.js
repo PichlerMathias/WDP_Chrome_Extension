@@ -1,3 +1,4 @@
+import * as database from './database.js'
 
 export function getAllCountdowns(callback) {
     // Open a connection to the database
@@ -46,26 +47,49 @@ export function getAllCountdowns(callback) {
     };
 }
 
-export function getLockedAnimalIds(callback) {
+export function getUnlockedAnimalIds(callback) {
     getAllCountdowns(function (countdowns) {
         var unlockedAnimals = [];
-        for (var i = 0; i <= 25; i++) {
-            unlockedAnimals.push(i);
-        }
 
         countdowns.forEach((countdown) => {
-            var indexToRemove = unlockedAnimals.indexOf(countdown.animalId);
-
-            if (indexToRemove > -1) {
-                unlockedAnimals.splice(indexToRemove, 1);
+            if(!unlockedAnimals.includes(countdown.animalId)){
+                unlockedAnimals.push(countdown.animalId);
             }
         });
 
-        callback(unlockedAnimals)
+        console.log("getUnlockedAnimalIds return: ", unlockedAnimals);
+
+        callback(unlockedAnimals);
+    });
+}
+
+export function getLockedAnimalIds(callback) {
+    getUnlockedAnimalIds(function (unlockedAnimals) {
+        let totalAnimalCount = database.getTotalAnimalCount();
+
+        var lockedAnimals = [];
+        for (var i = 1; i <= totalAnimalCount; i++) {
+            lockedAnimals.push(i);
+        }
+
+        if (unlockedAnimals.length === totalAnimalCount) {
+            callback(lockedAnimals);
+        } else {
+            unlockedAnimals.forEach((unlockedAnimal) => {
+                var indexToRemove = lockedAnimals.indexOf(unlockedAnimal);
+
+                if (indexToRemove > -1) {
+                    lockedAnimals.splice(indexToRemove, 1);
+                }
+            });
+
+            callback(lockedAnimals);
+        }
     });
 }
 
 export function insertCountDown(date, length) {
+
     getLockedAnimalIds(function (lockedAnimalIds) {
 
         const request = indexedDB.open('zooDb');
@@ -75,7 +99,11 @@ export function insertCountDown(date, length) {
             const transaction = db.transaction(['countdowns'], 'readwrite');
             const objectStore = transaction.objectStore('countdowns');
 
-            let animalId = lockedAnimalIds[Math.floor(Math.random() * lockedAnimalIds.length) + 1];
+            console.log(lockedAnimalIds);
+
+            let animalId = lockedAnimalIds[Math.floor(Math.random() * lockedAnimalIds.length)];
+
+            console.log("inserting random animalId", animalId);
 
             const countdownRecord = {
                 date: date,
@@ -113,8 +141,6 @@ export function getCurrentCountDownObject() {
 export function getRemainingSeconds() {
     var object = JSON.parse(getCurrentCountDownObject());
     if (object) {
-        console.log("db: ", object.date);
-        console.log("now: ", new Date());
         return Math.floor((object.length * 60 - ((new Date() - new Date(object.date)) / (1000)))) + 1;
     }
 
@@ -127,9 +153,6 @@ export function insertCountDownIfFinished() {
         const startTime = new Date();
         startTime.setMinutes(startTime.getMinutes() - object.length);
 
-        console.log(new Date(object.date));
-        console.log(startTime);
-
         if (new Date(object.date) < startTime) {
             insertCountDown(object.date, object.length);
             deleteCountDownItem();
@@ -137,7 +160,7 @@ export function insertCountDownIfFinished() {
     }
 }
 
-export function deleteCountDownItem(){
+export function deleteCountDownItem() {
     localStorage.removeItem(countDownObjectName);
 }
 

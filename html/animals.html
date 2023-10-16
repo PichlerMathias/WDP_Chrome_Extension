@@ -7,6 +7,7 @@
     <link rel="stylesheet" href=../css/header.css>
     <link rel="stylesheet" href=../css/main.css>
     <link rel="stylesheet" href=../css/animals.css>
+
     <title>Contact | Ascii School</title>
 </head>
 
@@ -43,12 +44,14 @@
 
     <section>
         <h1>Animal Database</h1>
-        <table id="imageTable"></table>
-        <script src="../db/animals.js"></script>
-        <script src="../js/animals.js"></script>
+        <div class="container">
+            <div class="row" id="animalContainer">
+                <!-- Your animal elements will be added here -->
+            </div>
+        </div>
+        <script src="../db/animals.js" type="module"></script>
+        <script src="../js/animals.js" type="module"></script>
     </section>
-
-
 </main>
 
 

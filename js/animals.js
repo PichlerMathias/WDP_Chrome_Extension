@@ -1,26 +1,34 @@
-getAllAnimals(function (animals){
+import * as countdown from "../db/countdown.js";
+import * as animal from "../db/animals.js";
 
-    let table = document.getElementById("imageTable");
+animal.getAllAnimals(function (animals) {
+    countdown.getUnlockedAnimalIds(function (unlockedIds) {
 
-    animals.forEach((animal) => {
-        // Create a new row
-        const row = table.insertRow();
+        let container = document.getElementById("animalContainer");
 
-        // Create a table cell (<td>) for the image
-        const cell1 = row.insertCell();
-        const id = document.createElement('p');
-        id.innerHTML = animal.animalId;
-        cell1.appendChild(id);
+        animals.forEach((animal) => {
+            // Create a new div element for the animal
+            const animalDiv = document.createElement('div');
+            animalDiv.classList.add('col-sm-2', 'col-md-2', 'col-lg-1'); // Bootstrap classes for column sizing
 
-        const cell2 = row.insertCell();
+            // Create an image element
+            const img = document.createElement('img');
+            img.classList.add('img-fluid'); // Make the image responsive with Bootstrap class
+            img.height = 70;
+            img.width = 70;
 
-        // Create an image tag and set its source attribute
-        const img = document.createElement('img');
-        img.height = 70;
-        img.width = 70;
-        img.src = '../db/data/animalImg/' + animal.animalPath;
+            img.src = '../db/data/animalImg/' + animal.animalPath;
+            if (!unlockedIds.includes(animal.animalId)) {
+                img.style.opacity = "0.15";
 
-        // Append the image to the table cell
-        cell2.appendChild(img);
+            }
+
+            // Append the image and ID to the animal div
+            animalDiv.appendChild(img);
+
+            // Append the animal div to the container
+            container.appendChild(animalDiv);
+        });
+
     })
-})
+});
