@@ -37,8 +37,6 @@ export function createZooDatabase() {
     };
 
     request.onerror = function (event) {
-        console.log("on error");
-
         console.error('Error creating zooDb:', event.target.error);
     };
 }
@@ -71,6 +69,10 @@ const inputArray = [
     'unicorn-face',
     'whale'
 ];
+
+export function getTotalAnimalCount(){
+    return inputArray.length;
+}
 
 function getAnimals() {
     return inputArray.map((animalPath, index) => ({

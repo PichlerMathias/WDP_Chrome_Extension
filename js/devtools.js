@@ -9,8 +9,7 @@ document.getElementById('createDatabase').addEventListener("click", function () 
     database.createZooDatabase();
 });
 document.getElementById('insertCountdowns').addEventListener("click", function () {
-    countdown.insertCountDown(new Date(2023, 9, Math.floor(Math.random() * 30) + 1), 15);
-    countdown.insertCountDown(new Date(2023, 9, Math.floor(Math.random() * 30) + 1), 50);
-    countdown.insertCountDown(new Date(2023, 9, Math.floor(Math.random() * 30) + 1), 5);
-    countdown.insertCountDown(new Date(2023, 9, Math.floor(Math.random() * 30) + 1), 25);
+    let length = [5, 15, 25, 50];
+
+    countdown.insertCountDown(new Date(2023, 9, Math.floor(Math.random() * 30) + 1), length[Math.floor(Math.random() * 4)]);
 });

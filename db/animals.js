@@ -45,7 +45,7 @@ function getAnimalById(animalId, callback) {
     };
 }
 
-function getAllAnimals(callback) {
+export function getAllAnimals(callback) {
     // Open a connection to the database
     const request = indexedDB.open('zooDb');
 
@@ -93,7 +93,7 @@ function getAllAnimals(callback) {
 }
 
 
-function getAnimalImageById(animalId, callback) {
+export function getAnimalImageById(animalId, callback) {
     getAnimalById(animalId, function(animal) {
         if (animal) {
             // Check if the animal object has an 'imgPath' property
