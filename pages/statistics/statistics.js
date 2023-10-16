@@ -1,5 +1,5 @@
-import * as dbCountDown from '../db/countdown.js';
-import * as dbAnimals from '../db/animals.js';
+import * as dbCountDown from '../../db/countdown.js';
+import * as dbAnimals from '../../db/animals.js';
 
 function getChartData() {
     let data = [];
@@ -50,7 +50,7 @@ fetchData().then(data => {
 
         dbAnimals.getAnimalImageById(entry[2], function(imgPath) {
             if (imgPath) {
-                img.src = "../db/data/animalImg/" + imgPath;
+                img.src = "../../db/data/animalImg/" + imgPath;
             } else {
             }
         });

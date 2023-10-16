@@ -1,5 +1,5 @@
-import * as countdown from "../db/countdown.js";
-import * as animal from "../db/animals.js";
+import * as countdown from "../../db/countdown.js";
+import * as animal from "../../db/animals.js";
 
 animal.getAllAnimals(function (animals) {
     countdown.getUnlockedAnimalIds(function (unlockedIds) {
@@ -17,7 +17,7 @@ animal.getAllAnimals(function (animals) {
             img.height = 70;
             img.width = 70;
 
-            img.src = '../db/data/animalImg/' + animal.animalPath;
+            img.src = '../../db/data/animalImg/' + animal.animalPath;
             if (!unlockedIds.includes(animal.animalId)) {
                 img.style.opacity = "0.15";
 

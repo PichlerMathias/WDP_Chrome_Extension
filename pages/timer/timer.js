@@ -1,4 +1,4 @@
-import * as countdown from '../db/countdown.js';
+import * as countdown from '../../db/countdown.js';
 
 let timer = document.getElementById("timer");
 let button1 = document.getElementById("start1");

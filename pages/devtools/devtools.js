@@ -1,5 +1,5 @@
-import * as database from '../db/database.js';
-import * as countdown from '../db/countdown.js';
+import * as database from '../../db/database.js';
+import * as countdown from '../../db/countdown.js';
 
 
 document.getElementById('deleteDatabase').addEventListener("click", function () {
