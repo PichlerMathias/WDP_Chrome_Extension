@@ -4,7 +4,7 @@
   "description": "This extension helps you to stay focussed while building you animal park",
   "manifest_version": 3,
   "action": {
-    "default_popup": "html/index.html",
+    "default_popup": "pages/index/index.html",
     "default_title": "Animal Focus Park"
   },
   "background": {
