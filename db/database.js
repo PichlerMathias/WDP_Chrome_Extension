@@ -41,7 +41,7 @@ export function createZooDatabase() {
     };
 }
 
-const inputArray = [
+const animalList = [
     'baby_chicken',
     'bug',
     'camel',
@@ -70,12 +70,12 @@ const inputArray = [
     'whale'
 ];
 
-export function getTotalAnimalCount(){
-    return inputArray.length;
+export function getTotalAnimalCount() {
+    return animalList.length;
 }
 
 function getAnimals() {
-    return inputArray.map((animalPath, index) => ({
+    return animalList.map((animalPath, index) => ({
         animalId: index + 1,
         animalPath: animalPath + ".svg"
     }));

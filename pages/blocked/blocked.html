@@ -7,13 +7,14 @@
         <link rel="stylesheet" href=../../css/header.css>
         <link rel="stylesheet" href=../../css/main.css>
         <title>Contact | Ascii School</title>
+        <script src="../../db/websites.js" type="module"></script>
 
     </head>
 
     <body>
 
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Focus Zoo</a>
+        <a class="navbar-brand" href="../index/index.html">Focus Zoo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,28 +36,39 @@
                     <a class="nav-link" href="../devtools/devtools.html">Dev Tools</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../blocked/blocked.html">Blocked Websites</a>
+                    <a class="nav-link" href="blocked.html">Blocked Websites</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-        <header>
-            <h1>Heading</h1>
-            <p>This page describes the idea of the project and a short description of the features</p>
-        </header>
 
         <main>
 
             <section>
 
+                <script src="blocked.js" type="module"></script>
+                <h1>Blocked Websites</h1>
 
+                <table id="websiteTable">
+                    <thead>
+                    <tr>
+                        <th>Website</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+
+                <!-- Add a form for inserting websites -->
+                <form id="addWebsiteForm">
+                    <input type="text" id="websiteInput" placeholder="Enter Website URL" required>
+                    <button type="submit">Add</button>
+                </form>
             </section>
         </main>
 
-        <footer>
-            <p>footer content</p>
-        </footer>
 
     </body>
 

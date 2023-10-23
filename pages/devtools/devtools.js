@@ -1,5 +1,6 @@
 import * as database from '../../db/database.js';
 import * as countdown from '../../db/countdown.js';
+import * as websites from '../../db/websites.js';
 
 
 document.getElementById('deleteDatabase').addEventListener("click", function () {
@@ -7,6 +8,9 @@ document.getElementById('deleteDatabase').addEventListener("click", function () 
 });
 document.getElementById('createDatabase').addEventListener("click", function () {
     database.createZooDatabase();
+    websites.initWebsites(function (){
+
+    });
 });
 document.getElementById('insertCountdowns').addEventListener("click", function () {
     let length = [5, 15, 25, 50];
