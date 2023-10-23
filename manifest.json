@@ -7,8 +7,27 @@
     "default_popup": "pages/index/index.html",
     "default_title": "Animal Focus Park"
   },
+  "permissions": [
+    "storage"
+  ],
   "background": {
     "service_worker": "db/service_worker.js",
     "type": "module"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "pages/blocked_override/blocked_override.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [ "db/websites.js" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ]
 }
