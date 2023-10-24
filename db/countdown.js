@@ -150,11 +150,9 @@ const currentCountdownObject = 'currentCountdownObject';
 export function getCurrentCountDownObject(callback) {
 
     chrome.storage.local.get({currentCountdownObject}, function (data) {
-        console.log("raw data: ", data.currentCountdownObject);
 
         try {
             let json = JSON.parse(data.currentCountdownObject);
-            console.log("Parsed data: ", JSON.parse(data.currentCountdownObject));
             callback(json);
         } catch (error) {
             if (error instanceof SyntaxError) {
@@ -171,7 +169,6 @@ export function getCurrentCountDownObject(callback) {
 export function getRemainingSeconds(callback) {
     (getCurrentCountDownObject(function (value){
         if (value) {
-            console.log("return remaining seconds: ", Math.floor((value.length * 60 - ((new Date() - new Date(value.date)) / (1000)))) + 1)
             callback(Math.floor((value.length * 60 - ((new Date() - new Date(value.date)) / (1000)))) + 1);
         }
         else{
@@ -196,8 +193,10 @@ export function insertCountDownIfFinished() {
     });
 }
 
-export function deleteCountDownItem() {
-    localStorage.removeItem(countDownObjectName);
+export function deleteCountDownItem(callback) {
+    chrome.storage.local.remove(currentCountdownObject, function() {
+        callback(null);
+    });
 }
 
 export function insertCountDownObject() {

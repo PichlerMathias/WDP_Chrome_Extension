@@ -62,3 +62,14 @@ export function removeWebsite(website, callback) {
         });
     });
 }
+
+
+export function removeWebsiteContaining(website, callback) {
+    getWebsiteList(function (retrievedList) {
+
+        const updatedList = retrievedList.filter(item => !website.includes(item));
+        setWebsiteList(updatedList, function () {
+            callback();
+        });
+    });
+}

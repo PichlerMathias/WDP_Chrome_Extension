@@ -16,10 +16,23 @@
 
         if (forbidden) {
             clockScript.getRemainingSeconds(function (remainingSeconds) {
-                console.log("remaining seconds: ", remainingSeconds);
                 if (remainingSeconds > 0) {
                     document.head.innerHTML = blockedHead;
                     document.body.innerHTML = blockedBody;
+
+                    let cancel = document.getElementById("cancel");
+                    cancel.addEventListener("click", function () {
+                        clockScript.cancelClock();
+                        location.reload();
+                    });
+
+                    let deblock = document.getElementById("deblockWebsite");
+                    deblock.addEventListener("click", function () {
+                        console.log("Try to deblock site: ");
+                        websitesScript.removeWebsiteContaining(hostname, function (){
+                            location.reload();
+                        });
+                    });
 
 
                     clockScript.startClock(remainingSeconds, function () {
@@ -28,7 +41,6 @@
 
 
                 }
-                console.log("remaining S: ", remainingSeconds);
             });
         }
 
@@ -52,8 +64,11 @@ const blockedHead =`
 
 const blockedBody = `
                         <div id="wrapper">
-                            <p>BLOCKED</p>
+                            <p>The timer is still running! Get back to work!</p>
                             <div id="timer" style="display: none;"></div>
+                            <p>You can stop the timer, or remove the page from blocked pages, if you need id for studying!</p>
+                            <button id="cancel" class="btn btn-primary">Cancel</button>
+                            <button id="deblockWebsite" class="btn btn-primary">Webseite entblockieren</button>
                         </div>
                     `;
 
