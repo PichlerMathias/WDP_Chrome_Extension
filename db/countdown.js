@@ -128,36 +128,72 @@ export function insertCountDown(date, length) {
 
 export const countDownObjectName = "countDownObject";
 
-export function setCurrentCountDownObject(dateStarted, length) {
+export function setCurrentCountDownObject(dateStarted, length, callback) {
     const countDownObject = {date: dateStarted, length: length};
 
+    chrome.storage.local.set({currentCountdownObject: JSON.stringify(countDownObject)}, function () {
+        console.log("Set countdownobject: ", countDownObject)
+        callback(null);
+    });
+
+    /*
+
+
     localStorage.setItem(countDownObjectName, JSON.stringify(countDownObject));
+
+     */
 }
 
-export function getCurrentCountDownObject() {
-    return localStorage.getItem(countDownObjectName);
+const currentCountdownObject = 'currentCountdownObject';
+
+
+export function getCurrentCountDownObject(callback) {
+
+    chrome.storage.local.get({currentCountdownObject}, function (data) {
+        console.log("raw data: ", data.currentCountdownObject);
+
+        try {
+            let json = JSON.parse(data.currentCountdownObject);
+            console.log("Parsed data: ", JSON.parse(data.currentCountdownObject));
+            callback(json);
+        } catch (error) {
+            if (error instanceof SyntaxError) {
+                console.log("No countdown set");
+                callback(null);
+            }
+            else {
+                throw error;
+            }
+        }
+    });
 }
 
-export function getRemainingSeconds() {
-    var object = JSON.parse(getCurrentCountDownObject());
-    if (object) {
-        return Math.floor((object.length * 60 - ((new Date() - new Date(object.date)) / (1000)))) + 1;
-    }
+export function getRemainingSeconds(callback) {
+    (getCurrentCountDownObject(function (value){
+        if (value) {
+            console.log("return remaining seconds: ", Math.floor((value.length * 60 - ((new Date() - new Date(value.date)) / (1000)))) + 1)
+            callback(Math.floor((value.length * 60 - ((new Date() - new Date(value.date)) / (1000)))) + 1);
+        }
+        else{
+            callback(null);
+        }
 
-    return null;
+    }));
+
 }
 
 export function insertCountDownIfFinished() {
-    var object = JSON.parse(getCurrentCountDownObject());
-    if (object) {
-        const startTime = new Date();
-        startTime.setMinutes(startTime.getMinutes() - object.length);
+    getCurrentCountDownObject(function (value){
+        if (value) {
+            const startTime = new Date();
+            startTime.setMinutes(startTime.getMinutes() - value.length);
 
-        if (new Date(object.date) < startTime) {
-            insertCountDown(object.date, object.length);
-            deleteCountDownItem();
+            if (new Date(value.date) < startTime) {
+                insertCountDown(value.date, value.length);
+                deleteCountDownItem();
+            }
         }
-    }
+    });
 }
 
 export function deleteCountDownItem() {
@@ -165,9 +201,10 @@ export function deleteCountDownItem() {
 }
 
 export function insertCountDownObject() {
-    var object = JSON.parse(getCurrentCountDownObject());
-    if (object) {
-        insertCountDown(object.date, object.length);
-        deleteCountDownItem();
-    }
+    getCurrentCountDownObject(function (value){
+        if (value) {
+            insertCountDown(value.date, value.length);
+            deleteCountDownItem();
+        }
+    });
 }

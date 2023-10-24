@@ -1,14 +1,13 @@
 (async () => {
-    const src = chrome.runtime.getURL('./db/websites.js');
-    const contentMain = await import(src);
+    const websitesScript = await import(chrome.runtime.getURL('./db/websites.js'));
+    const clockScript = await import(chrome.runtime.getURL('./pages/timer/clock.js'));
 
-    contentMain.getWebsiteList(function (forbiddenSites) {
+    websitesScript.getWebsiteList(function (forbiddenSites) {
         const hostname = window.location.hostname;
 
         let forbidden = false;
 
         forbiddenSites.forEach((site) => {
-                console.log(hostname.includes(site));
                 if (hostname.includes(site)) {
                     forbidden = true;
                 }
@@ -16,17 +15,45 @@
         );
 
         if (forbidden) {
-            console.log("Blocking Site!");
+            clockScript.getRemainingSeconds(function (remainingSeconds) {
+                console.log("remaining seconds: ", remainingSeconds);
+                if (remainingSeconds > 0) {
+                    document.head.innerHTML = blockedHead;
+                    document.body.innerHTML = blockedBody;
 
-            document.head.innerHTML = ``;
 
-            document.body.innerHTML = `
-        <div id="wrapper">
-            <p>BLOCKED</p>
-        </div>
-        `;
+                    clockScript.startClock(remainingSeconds, function () {
+                        location.reload();
+                    });
 
+
+                }
+                console.log("remaining S: ", remainingSeconds);
+            });
         }
+
     });
 })();
+
+const blockedHead =`
+                        <style>
+                            #timer {
+                                justify-content: center; /* Horizontal centering */
+                                align-items: center; /* Vertical centering */
+                                display: flex;
+                                background-color: #333;
+                                color: #fff;
+                                padding: 10px 20px;
+                                border-radius: 5px;
+                                width: 80px;
+                            }
+                         </style>
+                    `;
+
+const blockedBody = `
+                        <div id="wrapper">
+                            <p>BLOCKED</p>
+                            <div id="timer" style="display: none;"></div>
+                        </div>
+                    `;
 

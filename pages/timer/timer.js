@@ -1,97 +1,59 @@
-import * as countdown from '../../db/countdown.js';
+import * as clock from './clock.js';
 
-let timer = document.getElementById("timer");
 let button1 = document.getElementById("start1");
 let button5 = document.getElementById("start5");
 let button10 = document.getElementById("start10");
 let button25 = document.getElementById("start25");
 let button50 = document.getElementById("start50");
-let cancel = document.getElementById("cancel");
 const buttons = [button1, button5, button10, button25, button50];
+let cancel = document.getElementById("cancel");
 
 button1.addEventListener("click", function () {
-    startTimer(0.05);
+    clock.startNewClock(0.05, showStartButtons);
+    hideStartButtons();
 });
 button5.addEventListener("click", function () {
-    startTimer(5);
+    clock.startNewClock(5, showStartButtons);
+    hideStartButtons();
 });
 button10.addEventListener("click", function () {
-    startTimer(10);
+    clock.startNewClock(10, showStartButtons);
+    hideStartButtons();
 });
 button25.addEventListener("click", function () {
-    startTimer(25);
+    clock.startNewClock(25, showStartButtons);
+    hideStartButtons();
 });
 button50.addEventListener("click", function () {
-    startTimer(50);
+    clock.startNewClock(50, showStartButtons);
+    hideStartButtons();
 });
+
 cancel.addEventListener("click", function () {
-    cancelTimer();
+    clock.cancelClock();
+    showStartButtons();
+});
+
+clock.getRemainingSeconds(function (remainingSeconds){
+    console.log("got 2: ", remainingSeconds);
+    if(remainingSeconds){
+        hideStartButtons();
+        clock.startClock(remainingSeconds, showStartButtons);
+    }
 });
 
 
-let timeLeft = 0;
-loadTimerIfRunning();
-
-// Function to update the timer display
-function updateTimer() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
-
-function loadTimerIfRunning() {
-    let remainingSeconds = countdown.getRemainingSeconds();
-    if (remainingSeconds) {
-        startClock(remainingSeconds);
-    }
-}
-
-// Function to start the countdown
-function startTimer(minutes) {
-    countdown.setCurrentCountDownObject(new Date(), minutes);
-
-    startClock(minutes * 60);
-}
-
-function startClock(seconds) {
-    showTimer();
-
-    timeLeft = seconds;
-    updateTimer();
-    const timerInterval = setInterval(function () {
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateTimer();
-        } else {
-            timerFinished();
-            clearInterval(timerInterval);
-        }
-    }, 1000); // Update the timer every second (1000 milliseconds)
-}
-
-function showTimer() {
+function hideStartButtons(){
     buttons.forEach(button => {
         button.style.display = "none";
     });
-    timer.style.display = "block";
     cancel.style.display = "block";
-
 }
 
-function showButtons() {
+function showStartButtons(){
     buttons.forEach(button => {
         button.style.display = "block";
     });
-    timer.style.display = "none";
+
     cancel.style.display = "none";
-}
-
-function timerFinished() {
-    showButtons();
-    countdown.insertCountDownObject();
-}
-
-function cancelTimer(){
-    countdown.deleteCountDownItem();
-    showButtons();
 }
