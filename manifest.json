@@ -26,8 +26,15 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": [ "db/websites.js" ],
-      "matches": [ "<all_urls>" ]
+      "resources": [
+        "pages/timer/clock.js",
+        "db/database.js",
+        "db/countdown.js",
+        "db/websites.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }
