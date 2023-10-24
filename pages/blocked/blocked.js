@@ -36,8 +36,6 @@ function refreshTable() {
 
     getWebsiteList(function (websiteList) {
 
-        console.log("websiteList: ", websiteList);
-
         websiteList.forEach(item => {
             insertRow(item);
         });

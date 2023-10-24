@@ -14,7 +14,6 @@ export function createZooDatabase() {
     const request = indexedDB.open('zooDb', 1);
 
     request.onupgradeneeded = function (event) {
-        console.log("upgrade needed");
 
         const db = event.target.result;
 
@@ -28,7 +27,6 @@ export function createZooDatabase() {
         objectStoreCountdown.createIndex('length', 'length', {unique: false});
         objectStoreCountdown.createIndex('animalId', 'animalId', {unique: false});
 
-        console.log("insert animals =>");
         insertAnimals();
     };
 

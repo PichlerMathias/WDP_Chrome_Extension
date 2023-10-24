@@ -13,7 +13,6 @@ function updateClock() {
 
 export function getRemainingSeconds(callback) {
     return countdown.getRemainingSeconds(function (value){
-        console.log("got: ", value);
         callback(value)
     });
 }

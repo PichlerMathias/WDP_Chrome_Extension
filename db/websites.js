@@ -17,24 +17,18 @@ export function initWebsites(callback) {
 }
 
 export function setWebsiteList(websiteList, callback) {
-    console.log("Trying to set data: ", JSON.stringify(websiteList));
-
     chrome.storage.local.set({webSiteListName: JSON.stringify(websiteList)}, function () {
-        console.log("Set websites: ", websiteList)
         callback(null);
     });
 }
 
 export function getWebsiteList(callback) {
     chrome.storage.local.get({webSiteListName}, function (data) {
-        console.log("raw data: ", data.webSiteListName);
-
         try {
             let json = JSON.parse(data.webSiteListName);
             callback(json);
         } catch (error) {
             if (error instanceof SyntaxError) {
-                console.log("No websites set");
                 callback(null);
             }
             else {

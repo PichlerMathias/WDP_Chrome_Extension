@@ -16,7 +16,6 @@
 
         if (forbidden) {
             clockScript.getRemainingSeconds(function (remainingSeconds) {
-                console.log("remaining seconds: ", remainingSeconds);
                 if (remainingSeconds > 0) {
                     document.head.innerHTML = blockedHead;
                     document.body.innerHTML = blockedBody;
@@ -28,7 +27,6 @@
 
 
                 }
-                console.log("remaining S: ", remainingSeconds);
             });
         }
 

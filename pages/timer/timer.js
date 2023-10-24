@@ -35,7 +35,6 @@ cancel.addEventListener("click", function () {
 });
 
 clock.getRemainingSeconds(function (remainingSeconds){
-    console.log("got 2: ", remainingSeconds);
     if(remainingSeconds){
         hideStartButtons();
         clock.startClock(remainingSeconds, showStartButtons);

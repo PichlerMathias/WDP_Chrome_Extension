@@ -57,8 +57,6 @@ export function getUnlockedAnimalIds(callback) {
             }
         });
 
-        console.log("getUnlockedAnimalIds return: ", unlockedAnimals);
-
         callback(unlockedAnimals);
     });
 }
@@ -99,11 +97,7 @@ export function insertCountDown(date, length) {
             const transaction = db.transaction(['countdowns'], 'readwrite');
             const objectStore = transaction.objectStore('countdowns');
 
-            console.log(lockedAnimalIds);
-
             let animalId = lockedAnimalIds[Math.floor(Math.random() * lockedAnimalIds.length)];
-
-            console.log("inserting random animalId", animalId);
 
             const countdownRecord = {
                 date: date,
@@ -132,16 +126,8 @@ export function setCurrentCountDownObject(dateStarted, length, callback) {
     const countDownObject = {date: dateStarted, length: length};
 
     chrome.storage.local.set({currentCountdownObject: JSON.stringify(countDownObject)}, function () {
-        console.log("Set countdownobject: ", countDownObject)
         callback(null);
     });
-
-    /*
-
-
-    localStorage.setItem(countDownObjectName, JSON.stringify(countDownObject));
-
-     */
 }
 
 const currentCountdownObject = 'currentCountdownObject';
@@ -150,15 +136,12 @@ const currentCountdownObject = 'currentCountdownObject';
 export function getCurrentCountDownObject(callback) {
 
     chrome.storage.local.get({currentCountdownObject}, function (data) {
-        console.log("raw data: ", data.currentCountdownObject);
 
         try {
             let json = JSON.parse(data.currentCountdownObject);
-            console.log("Parsed data: ", JSON.parse(data.currentCountdownObject));
             callback(json);
         } catch (error) {
             if (error instanceof SyntaxError) {
-                console.log("No countdown set");
                 callback(null);
             }
             else {
@@ -171,7 +154,6 @@ export function getCurrentCountDownObject(callback) {
 export function getRemainingSeconds(callback) {
     (getCurrentCountDownObject(function (value){
         if (value) {
-            console.log("return remaining seconds: ", Math.floor((value.length * 60 - ((new Date() - new Date(value.date)) / (1000)))) + 1)
             callback(Math.floor((value.length * 60 - ((new Date() - new Date(value.date)) / (1000)))) + 1);
         }
         else{
