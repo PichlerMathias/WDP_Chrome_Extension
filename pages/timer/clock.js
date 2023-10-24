@@ -54,6 +54,7 @@ function clockFinished() {
 }
 
 export function cancelClock() {
-    countdown.deleteCountDownItem();
-    hideClock();
+    countdown.deleteCountDownItem(function (){
+        hideClock();
+    });
 }

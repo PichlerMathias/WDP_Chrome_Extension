@@ -178,8 +178,10 @@ export function insertCountDownIfFinished() {
     });
 }
 
-export function deleteCountDownItem() {
-    localStorage.removeItem(countDownObjectName);
+export function deleteCountDownItem(callback) {
+    chrome.storage.local.remove(currentCountdownObject, function() {
+        callback(null);
+    });
 }
 
 export function insertCountDownObject() {
