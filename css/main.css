@@ -2,3 +2,31 @@ main{
     margin-left: 20px;
     margin-right: 20px;
 }
+
+:root {
+    /* colors */
+    --colorBlue: #0a5f83;
+    --colorWhite: #F5F5F5FF;
+    --colorLightBlue: #c8dde7;
+
+    /* fonts */
+    --fontHeading: "Calibri", sans-serif;
+    --fontText: "Calibri Light", sans-serif;
+}
+
+.accent {
+    background-color: var(--colorBlue);
+    color: var(--colorWhite);
+}
+
+.navbar {
+    background-color: var(--colorBlue);
+}
+
+.nav-link {
+    color: var(--colorWhite);
+}
+
+.navbar-brand {
+    color: var(--colorLightBlue);
+}
