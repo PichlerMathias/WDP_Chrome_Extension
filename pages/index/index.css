@@ -1,3 +1,6 @@
+
+@import url('../../css/main.css');
+
 header {
     padding-left: 10px;
 }
@@ -16,16 +19,16 @@ h3 {
 }
 
 h1, h2, h3 {
-    color: #0a5f83;
-    font-family: "Calibri";
+    color: var(--colorBlue);
+    font-family: var(--fontHeading);
 }
 
 p {
-    font-family: "Calibri Light";
+    font-family: var(--fontText);
 }
 
 footer {
-    background-color: #c8dde7;
+    background-color: var(--colorLightBlue);
     text-align: right;
     padding-right: 10px;
 }
