@@ -1,0 +1,31 @@
+header {
+    padding-left: 10px;
+}
+
+h1 {
+    font-size: 30px;
+    padding-top: 10px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h1, h2, h3 {
+    color: #0a5f83;
+    font-family: "Calibri";
+}
+
+p {
+    font-family: "Calibri Light";
+}
+
+footer {
+    background-color: #c8dde7;
+    text-align: right;
+    padding-right: 10px;
+}

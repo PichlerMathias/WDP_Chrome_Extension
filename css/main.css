@@ -2,3 +2,24 @@ main{
     margin-left: 20px;
     margin-right: 20px;
 }
+
+:root {
+    --accent: #0a5f83; /* Replace with your chosen color value */
+}
+
+.accent {
+    background-color: var(--accent);
+    color: whitesmoke;
+}
+
+.navbar {
+    background-color: var(--accent);
+}
+
+.nav-link {
+    color: whitesmoke;
+}
+
+.navbar-brand {
+    color: #7bcfff;
+}
