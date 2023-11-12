@@ -52,7 +52,7 @@ export function getUnlockedAnimalIds(callback) {
         var unlockedAnimals = [];
 
         countdowns.forEach((countdown) => {
-            if(!unlockedAnimals.includes(countdown.animalId)){
+            if (!unlockedAnimals.includes(countdown.animalId)) {
                 unlockedAnimals.push(countdown.animalId);
             }
         });
@@ -143,8 +143,7 @@ export function getCurrentCountDownObject(callback) {
         } catch (error) {
             if (error instanceof SyntaxError) {
                 callback(null);
-            }
-            else {
+            } else {
                 throw error;
             }
         }
@@ -152,43 +151,36 @@ export function getCurrentCountDownObject(callback) {
 }
 
 export function getRemainingSeconds(callback) {
-    (getCurrentCountDownObject(function (value){
-        if (value) {
-            callback(Math.floor((value.length * 60 - ((new Date() - new Date(value.date)) / (1000)))) + 1);
-        }
-        else{
-            callback(null);
-        }
-
+    (getCurrentCountDownObject(function (value) {
+        callback(calculateRemainingSeconds(value));
     }));
-
 }
 
-export function insertCountDownIfFinished() {
-    getCurrentCountDownObject(function (value){
-        if (value) {
-            const startTime = new Date();
-            startTime.setMinutes(startTime.getMinutes() - value.length);
+function calculateRemainingSeconds(currentCountDownObject){
+    if (currentCountDownObject) {
+        return Math.floor((currentCountDownObject.length * 60 - ((new Date() - new Date(currentCountDownObject.date)) / (1000)))) + 1;
+    } else {
+        return null;
+    }}
 
-            if (new Date(value.date) < startTime) {
-                insertCountDown(value.date, value.length);
-                deleteCountDownItem();
-            }
+export function insertCountDownIfFinished(callback) {
+    (getCurrentCountDownObject(function (value) {
+        let remainingSeconds = calculateRemainingSeconds(value);
+
+        if(remainingSeconds && remainingSeconds <= 0){
+            insertCountDown(value.date, value.length);
+            deleteCountDownItem(function () {
+                callback();
+            });
         }
-    });
+        else{
+            callback();
+        }
+    }));
 }
 
 export function deleteCountDownItem(callback) {
-    chrome.storage.local.remove(currentCountdownObject, function() {
+    chrome.storage.local.remove(currentCountdownObject, function () {
         callback(null);
-    });
-}
-
-export function insertCountDownObject() {
-    getCurrentCountDownObject(function (value){
-        if (value) {
-            insertCountDown(value.date, value.length);
-            deleteCountDownItem();
-        }
     });
 }
