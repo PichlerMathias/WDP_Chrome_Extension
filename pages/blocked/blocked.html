@@ -1,75 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href=../../css/header.css>
-        <link rel="stylesheet" href=../../css/main.css>
-        <title>Blocked | Focus Zoo</title>
-        <script src="../../db/websites.js" type="module"></script>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href=../../main/main.css>
+    <script src="../../main/main.js" type="module"></script>
 
-    </head>
+    <title>Blocked | Focus Zoo</title>
+    <script src="../../db/websites.js" type="module"></script>
 
-    <body>
+</head>
 
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="../index/index.html">Focus Zoo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="../timer/timer.html">Timer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../statistics/statistics.html">Statistics</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../animals/animals.html">Zoo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../contact/contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../devtools/devtools.html">Dev Tools</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blocked.html">Blocked Websites</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<body>
 
-
-        <main>
-
-            <section>
-
-                <script src="blocked.js" type="module"></script>
-                <h1>Blocked Websites</h1>
-
-                <table id="websiteTable">
-                    <thead>
-                    <tr>
-                        <th>Website</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+<nav class="navbar navbar-expand-sm navbar-light">
+    <a class="navbar-brand" href="../index/index.html">Focus Zoo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="../timer/timer.html">Timer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../statistics/statistics.html">Statistics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../animals/animals.html">Zoo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../contact/contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../devtools/devtools.html">Dev Tools</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="blocked.html">Blocked Websites</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 
-                <!-- Add a form for inserting websites -->
-                <form id="addWebsiteForm">
-                    <input type="text" id="websiteInput" placeholder="Enter Website URL" required>
-                    <button type="submit">Add</button>
-                </form>
-            </section>
-        </main>
+<main>
+
+    <section>
+
+        <script src="blocked.js" type="module"></script>
+        <h1>Blocked Websites</h1>
+
+        <table id="websiteTable">
+            <thead>
+            <tr>
+                <th>Website</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
 
 
-    </body>
+        <!-- Add a form for inserting websites -->
+        <form id="addWebsiteForm">
+            <input type="text" id="websiteInput" placeholder="Enter Website URL" required>
+            <button type="submit">Add</button>
+        </form>
+    </section>
+</main>
+
+<div id="footer"></div>
+</body>
 
 </html>

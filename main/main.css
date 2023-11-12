@@ -1,0 +1,61 @@
+html {
+    width: 750px; /* max width */
+    height: 600px; /* max height */
+}
+
+main {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+:root {
+    /* colors */
+    /* base: EC905E */
+    --colorBlue: #456D9A;
+    --colorWhite: #F5F5F5FF;
+    --colorLightBlue: #caddff;
+    --colorLightGreen: #83C5B1;
+    --colorGreen: #3E9C80;
+
+    /* fonts */
+    --fontHeading: "Calibri", sans-serif;
+    --fontText: "Calibri Light", sans-serif;
+}
+
+.accent {
+    background-color: var(--colorBlue);
+    color: var(--colorWhite);
+}
+
+.navbar {
+    background-color: var(--colorBlue);
+}
+
+.nav-link {
+    color: var(--colorLightBlue);
+    border-bottom: 1px solid var(--colorBlue);
+    font-family: var(--fontHeading);
+    font-size: 16px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-brand:hover {
+    color: var(--colorWhite);
+    border-bottom: 1px solid var(--colorLightBlue);
+    font-family: var(--fontHeading);
+}
+
+.navbar-brand {
+    color: var(--colorLightBlue);
+    border-bottom: 1px solid var(--colorBlue);
+    margin-left: 20px;
+    font-family: var(--fontHeading);
+    font-size: 20px;
+}
+
+footer {
+    background-color: var(--colorLightGreen);
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 20px;
+}
