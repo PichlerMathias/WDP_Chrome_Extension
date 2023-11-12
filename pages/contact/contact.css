@@ -1,0 +1,23 @@
+@import url('../../main/main.css');
+
+h1 {
+    font-size: 30px;
+    padding-top: 10px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h1, h2, h3 {
+    color: var(--colorBlue);
+    font-family: var(--fontHeading);
+}
+
+p {
+    font-family: var(--fontText);
+}
