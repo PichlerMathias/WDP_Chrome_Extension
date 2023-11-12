@@ -1,5 +1,5 @@
 
-@import url('../../css/main.css');
+@import url('../../main/main.css');
 
 header {
     padding-left: 10px;
@@ -25,10 +25,4 @@ h1, h2, h3 {
 
 p {
     font-family: var(--fontText);
-}
-
-footer {
-    background-color: var(--colorLightBlue);
-    text-align: right;
-    padding-right: 10px;
 }
