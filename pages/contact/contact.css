@@ -1,23 +1,21 @@
 @import url('../../main/main.css');
 
-h1 {
-    font-size: 30px;
-    padding-top: 10px;
+.image {
+    width: auto;
+    height: 250px;
 }
 
-h2 {
-    font-size: 25px;
+.authors-section {
+    display: flex;
+    /*justify-content: center;*/
 }
 
-h3 {
-    font-size: 20px;
+.author {
+    margin-right: 20px;
+    padding: 20px;
+    text-align: center;
 }
 
-h1, h2, h3 {
-    color: var(--colorBlue);
-    font-family: var(--fontHeading);
-}
-
-p {
-    font-family: var(--fontText);
+.author h2 {
+    padding-top: 8px;
 }

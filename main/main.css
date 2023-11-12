@@ -57,5 +57,38 @@ footer {
     background-color: var(--colorLightGreen);
     text-align: right;
     padding-right: 10px;
-    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+header {
+    padding-left: 10px;
+}
+
+h1 {
+    font-size: 30px;
+    padding-top: 10px;
+}
+
+h2 {
+    font-size: 25px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h1, h2, h3 {
+    color: var(--colorBlue);
+    font-family: var(--fontHeading);
+}
+
+p {
+    font-family: var(--fontText);
+}
+
+button {
+    background-color: var(--colorGreen);
+    color: var(--colorWhite);
 }
