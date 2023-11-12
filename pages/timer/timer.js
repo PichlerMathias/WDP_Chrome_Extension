@@ -1,4 +1,5 @@
 import * as clock from './clock.js';
+import {initClock} from "./clock.js";
 
 let button1 = document.getElementById("start1");
 let button5 = document.getElementById("start5");
@@ -34,22 +35,25 @@ cancel.addEventListener("click", function () {
     showStartButtons();
 });
 
-clock.getRemainingSeconds(function (remainingSeconds){
-    if(remainingSeconds){
-        hideStartButtons();
-        clock.startClock(remainingSeconds, showStartButtons);
+clock.initClock(function (timerIsRunning) {
+    if (timerIsRunning) {
+
+        clock.getRemainingSeconds(function (remainingSeconds) {
+            hideStartButtons();
+            clock.startClock(remainingSeconds, showStartButtons);
+        });
     }
-});
+})
 
 
-function hideStartButtons(){
+function hideStartButtons() {
     buttons.forEach(button => {
         button.style.display = "none";
     });
     cancel.style.display = "block";
 }
 
-function showStartButtons(){
+function showStartButtons() {
     buttons.forEach(button => {
         button.style.display = "block";
     });

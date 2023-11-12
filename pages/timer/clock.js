@@ -1,4 +1,5 @@
 import * as countdown from '../../db/countdown.js';
+import {insertCountDownIfFinished} from "../../db/countdown.js";
 
 let timer = document.getElementById("timer");
 
@@ -17,6 +18,21 @@ export function getRemainingSeconds(callback) {
     });
 }
 
+export function initClock(callback) {
+    getRemainingSeconds(function (remainingSeconds){
+        if(remainingSeconds && remainingSeconds > 0){
+            callback(true);
+        }
+        else{
+            insertCountDownIfFinished(function (){
+                callback(false);
+            })
+        }
+    });
+}
+
+
+
 // Function to start the countdown
 export function startNewClock(minutes, clockFinishedCallback) {
     countdown.setCurrentCountDownObject(new Date(), minutes, function () {
@@ -33,9 +49,12 @@ export function startClock(seconds, clockFinishedCallback) {
             timeLeft--;
             updateClock();
         } else {
-            clockFinished();
-            clearInterval(timerInterval);
-            clockFinishedCallback();
+            hideClock();
+            countdown.insertCountDownIfFinished(function () {
+                clearInterval(timerInterval);
+                clockFinishedCallback();
+            });
+
         }
     }, 1000); // Update the timer every second (1000 milliseconds)
 }
@@ -47,10 +66,6 @@ function showClock() {
 
 function hideClock() {
     timer.style.display = "none";
-}
-
-function clockFinished() {
-    hideClock();
 }
 
 export function cancelClock() {
