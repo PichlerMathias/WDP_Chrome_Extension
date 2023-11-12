@@ -1,0 +1,21 @@
+@import url('../../main/main.css');
+
+.image {
+    width: auto;
+    height: 250px;
+}
+
+.authors-section {
+    display: flex;
+    /*justify-content: center;*/
+}
+
+.author {
+    margin-right: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.author h2 {
+    padding-top: 8px;
+}
