@@ -1,10 +1,10 @@
+@import url('../../main/main.css');
+
 #timer {
-    justify-content: center; /* Horizontal centering */
-    align-items: center; /* Vertical centering */
+    justify-content: center;
+    align-items: center;
     display: flex;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--colorLightRed);
     padding: 10px 20px;
     border-radius: 5px;
-    width: 80px;
 }

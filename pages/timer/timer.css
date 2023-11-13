@@ -1,0 +1,18 @@
+@import url('../../main/main.css');
+
+#cancel {
+    background-color: var(--colorLightRed);
+}
+
+.choseTimer {
+    display: flex;
+}
+
+.timerRunning {
+    margin-top: 10px;
+    display: flex;
+}
+
+.btn {
+    margin: 10px;
+}
