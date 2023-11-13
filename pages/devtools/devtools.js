@@ -15,5 +15,5 @@ document.getElementById('createDatabase').addEventListener("click", function () 
 document.getElementById('insertCountdowns').addEventListener("click", function () {
     let length = [5, 15, 25, 50];
 
-    countdown.insertCountDown(new Date(2023, 9, Math.floor(Math.random() * 30) + 1), length[Math.floor(Math.random() * 4)]);
+    countdown.insertCountDown(new Date(2023, 9, Math.floor(Math.random() * 30) + 1), length[Math.floor(Math.random() * 4)]*60);
 });

@@ -86,21 +86,7 @@ function onTimesUp() {
 }
 
 function startTimer(limitgiven) {
-    limit = limitgiven;
-    timeLeft = limit;
-    timerInterval = setInterval(() => {
-        timePassed = timePassed += 1;
-        timeLeft = limit - timePassed;
-        document.getElementById("base-timer-label").innerHTML = formatTime(
-            timeLeft
-        );
-        setCircleDasharray();
-        setRemainingPathColor(timeLeft);
 
-        if (timeLeft === 0) {
-            onTimesUp();
-        }
-    }, 1000);
 }
 
 function formatTime(time) {
