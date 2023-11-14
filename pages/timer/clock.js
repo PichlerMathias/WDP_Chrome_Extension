@@ -85,13 +85,13 @@ function updateClock(timeLeft, limit) {
     setRemainingPathColor(timeLeft);
 }
 
+let timerInterval;
+
 export function startClock(timeLeft, limit, clockFinishedCallback) {
     showClock();
 
-    document.getElementById("base-timer-label").innerHTML = formatTime(
-        timeLeft
-    );
-    let timerInterval = setInterval(() => {
+    updateClock(timeLeft, limit);
+    timerInterval = setInterval(() => {
         timeLeft--;
         updateClock(timeLeft, limit);
 
@@ -105,6 +105,10 @@ export function startClock(timeLeft, limit, clockFinishedCallback) {
     }, 1000);
 }
 
+
+
+
+
 function showClock() {
     timer = document.getElementById("timer");
     timer.style.display = "block";
@@ -115,7 +119,7 @@ function hideClock() {
 }
 
 export function cancelClock() {
-    console.log("Try to delete item");
+    clearInterval(timerInterval);
     countdown.deleteCountDownItem(function () {
         hideClock();
     });
