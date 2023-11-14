@@ -1,12 +1,10 @@
 import * as countdown from '../../db/countdown.js';
-import {insertCountDownIfFinished} from "../../db/countdown.js";
 
 let timer = document.getElementById("timer");
 
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
-
 
 const COLOR_CODES = {
     info: {
@@ -35,10 +33,10 @@ export function getRemainingSeconds(callback) {
 export function initClock(callback) {
     initClockHtml();
     getRemainingSeconds(function (remainingSeconds, limit) {
-        if (remainingSeconds && remainingSeconds > 0) {
+        if (remainingSeconds != null && remainingSeconds > 0) {
             callback(true);
         } else {
-            insertCountDownIfFinished(function () {
+            countdown.insertCountDownIfFinished(function () {
                 callback(false);
             })
         }

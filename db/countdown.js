@@ -164,10 +164,11 @@ function calculateRemainingSeconds(currentCountDownObject){
     }}
 
 export function insertCountDownIfFinished(callback) {
+    console.log("insertCountDownIfFinished called");
     (getCurrentCountDownObject(function (value) {
         let remainingSeconds = calculateRemainingSeconds(value);
 
-        if(remainingSeconds && remainingSeconds <= 0){
+        if(remainingSeconds != null && remainingSeconds <= 0){
             insertCountDown(value.date, value.length);
             deleteCountDownItem(function () {
                 callback();
