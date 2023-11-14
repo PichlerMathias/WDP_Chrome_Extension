@@ -34,8 +34,8 @@ cancel.addEventListener("click", function () {
     showStartButtons();
 });
 
+
 clock.initClock(function (timerIsRunning) {
-    console.log('hi');
     if (timerIsRunning) {
 
         clock.getRemainingSeconds(function (remainingSeconds, limit) {

@@ -34,11 +34,15 @@
                         });
                     });
 
+                    clockScript.initClock(function (timerIsRunning) {
+                        console.log("timerIsRunning: ", timerIsRunning);
+                        if (timerIsRunning) {
+                            clockScript.getRemainingSeconds(function (remainingSeconds, limit) {
+                                clockScript.startClock(remainingSeconds, limit, () => location.reload());
+                            });
+                        }
 
-                    clockScript.startClock(remainingSeconds, function () {
-                        location.reload();
-                    });
-
+                    })
 
                 }
             });
@@ -49,16 +53,63 @@
 
 const blockedHead =`
                         <style>
-                            #timer {
-                                justify-content: center; /* Horizontal centering */
-                                align-items: center; /* Vertical centering */
-                                display: flex;
-                                background-color: #333;
-                                color: #fff;
-                                padding: 10px 20px;
-                                border-radius: 5px;
-                                width: 80px;
-                            }
+#timer {
+
+
+}
+
+.base-timer {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.base-timer__svg {
+    transform: scaleX(-1);
+}
+
+.base-timer__circle {
+    fill: none;
+    stroke: none;
+}
+
+.base-timer__path-elapsed {
+    stroke-width: 7px;
+    stroke: #c4c4c4;
+}
+
+.base-timer__path-remaining {
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill-rule: nonzero;
+    stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+    color: #83C5B1;
+}
+
+.base-timer__path-remaining.orange {
+    color: #FFD18A;
+}
+
+.base-timer__path-remaining.red {
+    color: #FFB38A;
+}
+
+.base-timer__label {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
                          </style>
                     `;
 

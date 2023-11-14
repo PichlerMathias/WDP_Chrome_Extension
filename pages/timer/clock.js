@@ -31,6 +31,7 @@ export function getRemainingSeconds(callback) {
 }
 
 export function initClock(callback) {
+    console.log("init clock called");
     initClockHtml();
     getRemainingSeconds(function (remainingSeconds, limit) {
         if (remainingSeconds != null && remainingSeconds > 0) {
