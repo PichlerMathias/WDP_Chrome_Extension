@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href=clock.css>
+    <link rel="stylesheet" href=timer.css>
     <link rel="stylesheet" href=../../main/main.css>
     <script src="../../main/main.js" type="module"></script>
 
@@ -42,19 +43,24 @@
     </div>
 </nav>
 
+<header>
+    <h1>Unlock Animal</h1>
+</header>
+
 <main>
-
     <section>
-        <h1>Unlock Animal</h1>
         <script src="../../db/countdown.js" type="module"></script>
-        <div id="timer" style="display: none;"></div>
-        <button id="start1" class="btn btn-primary">3 Seconds TESTONLY</button>
-        <button id="start5" class="btn btn-primary">5 Minutes</button>
-        <button id="start10" class="btn btn-primary">10 Minutes</button>
-        <button id="start25" class="btn btn-primary">25 Minutes</button>
-        <button id="start50" class="btn btn-primary">50 Minutes</button>
-        <button id="cancel" class="btn btn-primary" style="display: none">Cancel</button>
-
+        <div class="choseTimer">
+            <button id="start1" class="btn custombtn">3 Seconds TESTONLY</button>
+            <button id="start5" class="btn custombtn">5 Minutes</button>
+            <button id="start10" class="btn custombtn">10 Minutes</button>
+            <button id="start25" class="btn custombtn">25 Minutes</button>
+            <button id="start50" class="btn custombtn">50 Minutes</button>
+        </div>
+        <div class="timerRunning">
+            <div id="timer" style="display: none;"></div>
+            <button id="cancel" class="btn" style="display: none">Cancel</button>
+        </div>
         <script src="timer.js" type="module" ></script>
     </section>
 </main>

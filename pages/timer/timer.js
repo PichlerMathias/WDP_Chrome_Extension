@@ -1,5 +1,4 @@
 import * as clock from './clock.js';
-import {initClock} from "./clock.js";
 
 let button1 = document.getElementById("start1");
 let button5 = document.getElementById("start5");
@@ -10,23 +9,23 @@ const buttons = [button1, button5, button10, button25, button50];
 let cancel = document.getElementById("cancel");
 
 button1.addEventListener("click", function () {
-    clock.startNewClock(0.05, showStartButtons);
+    clock.startNewClock(3, showStartButtons);
     hideStartButtons();
 });
 button5.addEventListener("click", function () {
-    clock.startNewClock(5, showStartButtons);
+    clock.startNewClock(5*60, showStartButtons);
     hideStartButtons();
 });
 button10.addEventListener("click", function () {
-    clock.startNewClock(10, showStartButtons);
+    clock.startNewClock(10*60, showStartButtons);
     hideStartButtons();
 });
 button25.addEventListener("click", function () {
-    clock.startNewClock(25, showStartButtons);
+    clock.startNewClock(25*60, showStartButtons);
     hideStartButtons();
 });
 button50.addEventListener("click", function () {
-    clock.startNewClock(50, showStartButtons);
+    clock.startNewClock(50*60, showStartButtons);
     hideStartButtons();
 });
 
@@ -36,13 +35,15 @@ cancel.addEventListener("click", function () {
 });
 
 clock.initClock(function (timerIsRunning) {
+    console.log('hi');
     if (timerIsRunning) {
 
-        clock.getRemainingSeconds(function (remainingSeconds) {
+        clock.getRemainingSeconds(function (remainingSeconds, limit) {
             hideStartButtons();
-            clock.startClock(remainingSeconds, showStartButtons);
+            clock.startClock(remainingSeconds, limit, showStartButtons);
         });
     }
+
 })
 
 

@@ -15,7 +15,7 @@ function getChartData() {
 
             const formattedDate = `${day}.${month}.${year}`;
 
-            var entry = [formattedDate, countdown.length, countdown.animalId];
+            var entry = [formattedDate, countdown.length/60, countdown.animalId];
 
             data.push(entry);
         });

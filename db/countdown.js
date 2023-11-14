@@ -152,22 +152,23 @@ export function getCurrentCountDownObject(callback) {
 
 export function getRemainingSeconds(callback) {
     (getCurrentCountDownObject(function (value) {
-        callback(calculateRemainingSeconds(value));
+        callback(calculateRemainingSeconds(value), value == null ? 0 : value.length);
     }));
 }
 
 function calculateRemainingSeconds(currentCountDownObject){
     if (currentCountDownObject) {
-        return Math.floor((currentCountDownObject.length * 60 - ((new Date() - new Date(currentCountDownObject.date)) / (1000)))) + 1;
+        return Math.floor((currentCountDownObject.length - ((new Date() - new Date(currentCountDownObject.date)) / (1000)))) + 1;
     } else {
         return null;
     }}
 
 export function insertCountDownIfFinished(callback) {
+    console.log("insertCountDownIfFinished called");
     (getCurrentCountDownObject(function (value) {
         let remainingSeconds = calculateRemainingSeconds(value);
 
-        if(remainingSeconds && remainingSeconds <= 0){
+        if(remainingSeconds != null && remainingSeconds <= 0){
             insertCountDown(value.date, value.length);
             deleteCountDownItem(function () {
                 callback();

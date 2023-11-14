@@ -16,6 +16,9 @@ main {
     --colorLightBlue: #caddff;
     --colorLightGreen: #83C5B1;
     --colorGreen: #3E9C80;
+    --colorDarkGreen: #127054;
+    --colorLightRed: #FFB38A;
+    --colorLightYellow: #FFD18A;
 
     /* fonts */
     --fontHeading: "Calibri", sans-serif;
@@ -88,7 +91,10 @@ p {
     font-family: var(--fontText);
 }
 
-button {
+.custombtn {
+    background-color: var(--colorLightGreen);
+}
+
+.custombtn:hover {
     background-color: var(--colorGreen);
-    color: var(--colorWhite);
 }

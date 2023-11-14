@@ -1,63 +1,111 @@
 import * as countdown from '../../db/countdown.js';
-import {insertCountDownIfFinished} from "../../db/countdown.js";
 
 let timer = document.getElementById("timer");
 
-let timeLeft = 0;
+const FULL_DASH_ARRAY = 283;
+const WARNING_THRESHOLD = 10;
+const ALERT_THRESHOLD = 5;
 
-// Function to update the timer display
-function updateClock() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-}
+const COLOR_CODES = {
+    info: {
+        color: "green"
+    },
+    warning: {
+        color: "orange",
+        threshold: WARNING_THRESHOLD
+    },
+    alert: {
+        color: "red",
+        threshold: ALERT_THRESHOLD
+    }
+};
+
+
+let remainingPathColor = COLOR_CODES.info.color;
+
 
 export function getRemainingSeconds(callback) {
-    return countdown.getRemainingSeconds(function (value){
-        callback(value)
+    return countdown.getRemainingSeconds(function (value, limit) {
+        callback(value, limit);
     });
 }
 
 export function initClock(callback) {
-    getRemainingSeconds(function (remainingSeconds){
-        if(remainingSeconds && remainingSeconds > 0){
+    initClockHtml();
+    getRemainingSeconds(function (remainingSeconds, limit) {
+        if (remainingSeconds != null && remainingSeconds > 0) {
             callback(true);
-        }
-        else{
-            insertCountDownIfFinished(function (){
+        } else {
+            countdown.insertCountDownIfFinished(function () {
                 callback(false);
             })
         }
     });
 }
 
+function initClockHtml() {
+    document.getElementById("timer").innerHTML = `
+<div class="base-timer">
+  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g class="base-timer__circle">
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+      <path
+        id="base-timer-path-remaining"
+        stroke-dasharray="283"
+        class="base-timer__path-remaining ${remainingPathColor}"
+        d="
+          M 50, 50
+          m -45, 0
+          a 45,45 0 1,0 90,0
+          a 45,45 0 1,0 -90,0
+        "
+      ></path>
+    </g>
+  </svg>
+  <span id="base-timer-label" class="base-timer__label">TODO</span>
+</div>
+`;
+}
 
 
 // Function to start the countdown
-export function startNewClock(minutes, clockFinishedCallback) {
-    countdown.setCurrentCountDownObject(new Date(), minutes, function () {
-        startClock(minutes * 60, clockFinishedCallback);
+export function startNewClock(seconds, clockFinishedCallback) {
+    countdown.setCurrentCountDownObject(new Date(), seconds, function () {
+        startClock(seconds, seconds, clockFinishedCallback);
     });
 }
 
-export function startClock(seconds, clockFinishedCallback) {
+function updateClock(timeLeft, limit) {
+    document.getElementById("base-timer-label").innerHTML = formatTime(
+        timeLeft
+    );
+    setCircleDasharray(timeLeft, limit);
+    setRemainingPathColor(timeLeft);
+}
+
+let timerInterval;
+
+export function startClock(timeLeft, limit, clockFinishedCallback) {
     showClock();
-    timeLeft = seconds;
-    updateClock();
-    const timerInterval = setInterval(function () {
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateClock();
-        } else {
+
+    updateClock(timeLeft, limit);
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateClock(timeLeft, limit);
+
+        if (timeLeft === 0) {
             hideClock();
             countdown.insertCountDownIfFinished(function () {
                 clearInterval(timerInterval);
                 clockFinishedCallback();
             });
-
         }
-    }, 1000); // Update the timer every second (1000 milliseconds)
+    }, 1000);
 }
+
+
+
+
 
 function showClock() {
     timer = document.getElementById("timer");
@@ -69,7 +117,53 @@ function hideClock() {
 }
 
 export function cancelClock() {
-    countdown.deleteCountDownItem(function (){
+    clearInterval(timerInterval);
+    countdown.deleteCountDownItem(function () {
         hideClock();
     });
+}
+
+
+function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    if (seconds < 10) {
+        seconds = `0${seconds}`;
+    }
+
+    return `${minutes}:${seconds}`;
+}
+
+function setRemainingPathColor(timeLeft) {
+    const {alert, warning, info} = COLOR_CODES;
+    if (timeLeft <= alert.threshold) {
+        document
+            .getElementById("base-timer-path-remaining")
+            .classList.remove(warning.color);
+        document
+            .getElementById("base-timer-path-remaining")
+            .classList.add(alert.color);
+    } else if (timeLeft -1 <= warning.threshold) {
+        document
+            .getElementById("base-timer-path-remaining")
+            .classList.remove(info.color);
+        document
+            .getElementById("base-timer-path-remaining")
+            .classList.add(warning.color);
+    }
+}
+
+function calculateTimeFraction(timeLeft, limit) {
+    const rawTimeFraction = timeLeft / limit;
+    return rawTimeFraction - (1 / limit) * (1 - rawTimeFraction);
+}
+
+function setCircleDasharray(timeLeft, limit) {
+    const circleDasharray = `${(
+        calculateTimeFraction(timeLeft, limit) * FULL_DASH_ARRAY
+    ).toFixed(0)} 283`;
+    document
+        .getElementById("base-timer-path-remaining")
+        .setAttribute("stroke-dasharray", circleDasharray);
 }
