@@ -10,8 +10,13 @@ function insertRow(website) {
     const actionCell = document.createElement('td');
     const deleteButton = document.createElement('button');
 
+    row.classList.add('website-row');
+
     websiteCell.textContent = website;
+    websiteCell.classList.add('website-cell');
+
     deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('custombtn');
     deleteButton.addEventListener('click', () => {
         websites.removeWebsite(website, function () {
 

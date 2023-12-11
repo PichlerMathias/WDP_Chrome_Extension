@@ -14,11 +14,12 @@ main {
     --colorBlue: #456D9A;
     --colorWhite: #F5F5F5FF;
     --colorLightBlue: #caddff;
-    --colorLightGreen: #83C5B1;
+    --colorLightGreen: #a3dec9;
     --colorGreen: #3E9C80;
     --colorDarkGreen: #127054;
     --colorLightRed: #FFB38A;
     --colorLightYellow: #FFD18A;
+    --colorLightGrey: #f2f2f2;
 
     /* fonts */
     --fontHeading: "Calibri", sans-serif;
@@ -93,8 +94,13 @@ p {
 
 .custombtn {
     background-color: var(--colorLightGreen);
+    border: 2px solid var(--colorGreen);
+    padding: 8px 16px;
+    color: var(--colorDarkGreen);
+    font-weight: bold;
 }
 
 .custombtn:hover {
-    background-color: var(--colorGreen);
+    background-color: var(--colorLightGrey);
+    color: #000000;
 }

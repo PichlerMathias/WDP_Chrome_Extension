@@ -53,8 +53,39 @@
 
 const blockedHead =`
                         <style>
-#timer {
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
 
+#buttonContainer {
+    display: flex;
+    gap: 10px; 
+}
+
+/*cannot use main.css, the styles will not be applied*/
+.custombtn {
+    background-color: #a3dec9;
+    border: 2px solid #3E9C80;
+    padding: 8px 16px;
+    color: #127054;
+    font-weight: bold;
+}
+
+.custombtn:hover {
+    background-color: #f2f2f2;
+    color: #000000;
+}
+
+p {
+    font-family: "Calibri Light", sans-serif;
+    font-size: 20px;
+}
+
+#timer {
 
 }
 
@@ -117,9 +148,11 @@ const blockedBody = `
                         <div id="wrapper">
                             <p>The timer is still running! Get back to work!</p>
                             <div id="timer" style="display: none;"></div>
-                            <p>You can stop the timer, or remove the page from blocked pages, if you need id for studying!</p>
-                            <button id="cancel" class="btn btn-primary">Cancel</button>
-                            <button id="deblockWebsite" class="btn btn-primary">Webseite entblockieren</button>
+                            <p>You can stop the timer, or remove the page from blocked pages, if you need it for studying!</p>
+                            <div id="buttonContainer">
+                                <button id="cancel" class="custombtn">Cancel</button>
+                                <button id="deblockWebsite" class="custombtn">Webseite entblockieren</button>
+                            </div>
                         </div>
                     `;
 
