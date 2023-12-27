@@ -53,7 +53,7 @@
 
 const blockedHead =`
                         <style>
-#wrapper {
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,7 +61,7 @@ const blockedHead =`
     height: 100vh;
 }
 
-#buttonContainer {
+.buttonContainer {
     display: flex;
     gap: 10px; 
 }
@@ -145,11 +145,11 @@ p {
                     `;
 
 const blockedBody = `
-                        <div id="wrapper">
+                        <div class="wrapper">
                             <p>The timer is still running! Get back to work!</p>
-                            <div id="timer" style="display: none;"></div>
-                            <p>You can stop the timer, or remove the page from blocked pages, if you need it for studying!</p>
-                            <div id="buttonContainer">
+                            <div class="timer" id="timer" style="display: none;"></div>
+                            <p>You can stop the timer, or remove the page from blocked pages, if you need it for studying</p>
+                            <div class="buttonContainer">
                                 <button id="cancel" class="custombtn">Cancel</button>
                                 <button id="deblockWebsite" class="custombtn">Webseite entblockieren</button>
                             </div>

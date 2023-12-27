@@ -1,24 +1,22 @@
 @import url('../../main/main.css');
 
-/* Add this CSS to your existing stylesheet or create a new one */
-
-#websiteTable {
+.websiteTable {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-#websiteTable th, #websiteTable td {
+.websiteTable th, .websiteTable td {
     padding: 10px;
     border: 1px solid #ffffff;
     text-align: left;
 }
 
-#websiteTable th {
+.websiteTable th {
     background-color: var(--colorLightGrey);
 }
 
-#addWebsiteForm {
+.addWebsiteForm {
     display: grid;
     grid-template-columns: 2.5fr 1fr;
     gap: 10px;
