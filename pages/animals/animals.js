@@ -9,21 +9,21 @@ animal.getAllAnimals(function (animals) {
         animals.forEach((animal) => {
             // Create a new div element for the animal
             const animalDiv = document.createElement('div');
-            animalDiv.classList.add('col-sm-2', 'col-md-2', 'col-lg-1'); // Bootstrap classes for column sizing
+            animalDiv.classList.add('animal-item');
 
             // Create an image element
             const img = document.createElement('img');
-            img.classList.add('img-fluid'); // Make the image responsive with Bootstrap class
+            img.classList.add('img-fluid');
             img.height = 70;
             img.width = 70;
 
             img.src = '../../db/data/animalImg/' + animal.animalPath;
-            if (!unlockedIds.includes(animal.animalId)) {
-                img.style.opacity = "0.15";
 
+            if (!unlockedIds.includes(animal.animalId)) {
+                img.classList.add('img-locked');
             }
 
-            // Append the image and ID to the animal div
+            // Append the image to the animal div
             animalDiv.appendChild(img);
 
             // Append the animal div to the container

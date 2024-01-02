@@ -1,13 +1,24 @@
 @import url('../../main/main.css');
 
-table {
-    border-collapse: collapse;
+#animalContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 25px;
+    justify-content: center;
 }
 
-table, th, td {
-    border: 1px solid black;
-}
-
-.container{
+.animal-item {
     width: 100%;
+    box-sizing: border-box;
 }
+
+.img-fluid {
+    width: 100%;
+    height: auto;
+    opacity: 1; /* Reset opacity for unlocked animals */
+}
+
+.img-locked {
+    opacity: 0.15;
+}
+

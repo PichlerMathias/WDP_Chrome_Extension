@@ -1,11 +1,19 @@
-html {
+
+html, body {
     width: 750px; /* max width */
     height: 600px; /* max height */
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
 }
 
 main {
     margin-left: 20px;
     margin-right: 20px;
+    flex: 1;
 }
 
 :root {
@@ -33,46 +41,69 @@ main {
 
 .navbar {
     background-color: var(--colorBlue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-right: 15px;
 }
 
 .nav-link {
     color: var(--colorLightBlue);
-    border-bottom: 1px solid var(--colorBlue);
     font-family: var(--fontHeading);
     font-size: 16px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--colorBlue);
+    padding-bottom: 5px;
+    transition: color 0.3s, border-bottom 0.3s;
 }
 
-.navbar-nav .nav-link:hover,
-.navbar-brand:hover {
+.nav-link:hover {
     color: var(--colorWhite);
     border-bottom: 1px solid var(--colorLightBlue);
-    font-family: var(--fontHeading);
 }
 
 .navbar-brand {
     color: var(--colorLightBlue);
-    border-bottom: 1px solid var(--colorBlue);
-    margin-left: 20px;
     font-family: var(--fontHeading);
     font-size: 20px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--colorBlue);
+}
+
+.navbar-brand:hover {
+    color: var(--colorWhite);
+    border-bottom: 1px solid var(--colorLightBlue);
 }
 
 footer {
     background-color: var(--colorLightGreen);
     text-align: right;
-    padding-right: 10px;
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+footer p {
+    margin: 0px;
 }
 
 header {
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
 h1 {
     font-size: 30px;
-    padding-top: 10px;
 }
 
 h2 {
@@ -90,6 +121,7 @@ h1, h2, h3 {
 
 p {
     font-family: var(--fontText);
+    font-size: 14px;
 }
 
 .custombtn {
