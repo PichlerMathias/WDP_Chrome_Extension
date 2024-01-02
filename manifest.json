@@ -1,11 +1,16 @@
 {
-  "name": "Animal Focus Park",
+  "name": "Focus Zoo",
   "version": "0.0.1",
-  "description": "This extension helps you to stay focussed while building you animal park",
+  "description": "This extension helps you to stay focussed while building you own zoo",
+  "icons": {
+    "16": "images/camel16.png",
+    "48": "images/camel48.png",
+    "128": "images/camel128.png"
+  },
   "manifest_version": 3,
   "action": {
     "default_popup": "pages/index/index.html",
-    "default_title": "Animal Focus Park"
+    "default_title": "Focus Zoo"
   },
   "permissions": [
     "storage"

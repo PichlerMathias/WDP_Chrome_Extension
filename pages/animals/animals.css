@@ -1,13 +1,20 @@
 @import url('../../main/main.css');
 
-table {
-    border-collapse: collapse;
+#animalContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* or use "space-between" for more space between elements */
 }
 
-table, th, td {
-    border: 1px solid black;
+.col-sm-2,
+.col-md-2,
+.col-lg-1 {
+    width: 18%; /* Adjust the percentage as needed */
+    margin: 0 1%; /* Adjust the margin as needed */
+    box-sizing: border-box;
 }
 
-.container{
-    width: 100%;
+.img-fluid {
+    width: 60%;
+    height: auto;
 }
