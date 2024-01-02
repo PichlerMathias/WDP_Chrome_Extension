@@ -1,8 +1,11 @@
+@import url('../../main/main.css');
+
 .chart {
     display: flex;
     flex-direction: column;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: var(--colorLightGrey);
+    border: 1px dashed var(--colorLightBlue);
+    padding: 10px;
 }
 
 img {
@@ -14,13 +17,11 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-
-
     height: 30px;
     margin-bottom: 10px;
     text-align: center;
-    background-color: #3498db;
-    color: white;
+    background-color: var(--colorBlue);
+    color: var(--colorWhite);
 }
 
 .bar-row{

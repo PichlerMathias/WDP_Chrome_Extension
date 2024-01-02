@@ -1,20 +1,24 @@
 @import url('../../main/main.css');
 
 #animalContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* or use "space-between" for more space between elements */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 25px;
+    justify-content: center;
 }
 
-.col-sm-2,
-.col-md-2,
-.col-lg-1 {
-    width: 18%; /* Adjust the percentage as needed */
-    margin: 0 1%; /* Adjust the margin as needed */
+.animal-item {
+    width: 100%;
     box-sizing: border-box;
 }
 
 .img-fluid {
-    width: 60%;
+    width: 100%;
     height: auto;
+    opacity: 1; /* Reset opacity for unlocked animals */
 }
+
+.img-locked {
+    opacity: 0.15;
+}
+
