@@ -98,6 +98,7 @@ export function startClock(timeLeft, limit, clockFinishedCallback) {
             countdown.insertCountDownIfFinished(function () {
                 clearInterval(timerInterval);
                 clockFinishedCallback();
+                alert('Your timer is finished');
             });
         }
     }, 1000);

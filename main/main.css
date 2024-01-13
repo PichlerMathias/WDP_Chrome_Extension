@@ -3,6 +3,8 @@ html, body {
     width: 750px; /* max width */
     height: 600px; /* max height */
     margin: 0;
+    background-color: var(--colorBackground);
+    color: var(--colorText);
 }
 
 body {
@@ -19,28 +21,49 @@ main {
 :root {
     /* colors */
     /* base: EC905E */
-    --colorBlue: #456D9A;
-    --colorWhite: #F5F5F5FF;
-    --colorLightBlue: #caddff;
-    --colorLightGreen: #a3dec9;
-    --colorGreen: #3E9C80;
-    --colorDarkGreen: #127054;
+    --colorNavbar: #456D9A;
+    --colorNavbarText: #caddff;
+
+    --colorBackground: #F5F5F5FF;
+    --colorAccentBackground: #e5e4e4;
+
+    --colorButton: #a3dec9;
+    --colorButtonOutline: #3E9C80;
+    --colorButtonText: #127054;
+
     --colorLightRed: #FFB38A;
     --colorLightYellow: #FFD18A;
-    --colorLightGrey: #f2f2f2;
+
+    --colorText: #232323;
 
     /* fonts */
     --fontHeading: "Calibri", sans-serif;
     --fontText: "Calibri Light", sans-serif;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colorNavbar: #8a9fc9;
+        --colorNavbarText: #253a52;
+
+        --colorBackground: #232323;
+        --colorAccentBackground: #414040;
+
+        --colorButton: #22655d;
+        --colorButtonOutline: #255b49;
+        --colorButtonText: #b5f3db;
+
+        --colorText: #F5F5F5FF;
+    }
+}
+
 .accent {
-    background-color: var(--colorBlue);
-    color: var(--colorWhite);
+    background-color: var(--colorNavbar);
+    color: var(--colorBackground);
 }
 
 .navbar {
-    background-color: var(--colorBlue);
+    background-color: var(--colorNavbar);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,35 +82,35 @@ main {
 }
 
 .nav-link {
-    color: var(--colorLightBlue);
+    color: var(--colorNavbarText);
     font-family: var(--fontHeading);
     font-size: 16px;
     text-decoration: none;
-    border-bottom: 1px solid var(--colorBlue);
+    border-bottom: 1px solid var(--colorNavbar);
     padding-bottom: 5px;
     transition: color 0.3s, border-bottom 0.3s;
 }
 
 .nav-link:hover {
-    color: var(--colorWhite);
-    border-bottom: 1px solid var(--colorLightBlue);
+    color: var(--colorBackground);
+    border-bottom: 1px solid var(--colorNavbarText);
 }
 
 .navbar-brand {
-    color: var(--colorLightBlue);
+    color: var(--colorNavbarText);
     font-family: var(--fontHeading);
     font-size: 20px;
     text-decoration: none;
-    border-bottom: 1px solid var(--colorBlue);
+    border-bottom: 1px solid var(--colorNavbar);
 }
 
 .navbar-brand:hover {
-    color: var(--colorWhite);
-    border-bottom: 1px solid var(--colorLightBlue);
+    color: var(--colorBackground);
+    border-bottom: 1px solid var(--colorNavbarText);
 }
 
 footer {
-    background-color: var(--colorLightGreen);
+    background-color: var(--colorButton);
     text-align: right;
     width: 100%;
     padding: 10px;
@@ -115,7 +138,7 @@ h3 {
 }
 
 h1, h2, h3 {
-    color: var(--colorBlue);
+    color: var(--colorNavbar);
     font-family: var(--fontHeading);
 }
 
@@ -125,14 +148,14 @@ p {
 }
 
 .custombtn {
-    background-color: var(--colorLightGreen);
-    border: 2px solid var(--colorGreen);
+    background-color: var(--colorButton);
+    border: 2px solid var(--colorButtonOutline);
     padding: 8px 16px;
-    color: var(--colorDarkGreen);
+    color: var(--colorButtonText);
     font-weight: bold;
 }
 
 .custombtn:hover {
-    background-color: var(--colorLightGrey);
-    color: #000000;
+    background-color: var(--colorAccentBackground);
+    color: var(--colorText);
 }
