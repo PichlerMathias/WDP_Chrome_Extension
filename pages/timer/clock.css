@@ -36,7 +36,7 @@
 }
 
 .base-timer__path-remaining.green {
-    color: var(--colorLightGreen);
+    color: var(--colorButton);
 }
 
 .base-timer__path-remaining.orange {
