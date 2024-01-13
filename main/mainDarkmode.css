@@ -1,0 +1,15 @@
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colorNavbar: #8a9fc9;
+        --colorNavbarText: #253a52;
+
+        --colorBackground: #232323;
+        --colorAccentBackground: #414040;
+
+        --colorButton: #22655d;
+        --colorButtonOutline: #255b49;
+        --colorButtonText: #b5f3db;
+
+        --colorText: #F5F5F5FF;
+    }
+}

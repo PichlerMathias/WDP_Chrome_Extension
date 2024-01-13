@@ -3,13 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href=../../main/main.css>
     <script src="../../main/main.js" type="module"></script>
-    <link rel="stylesheet" href=blocked.css>
+    <script src="settings.js" type="module"></script>
+    <link rel="stylesheet" href=../../main/main.css>
     <link rel="stylesheet" href="../../main/mainDarkmode.css" id="dark-mode-stylesheet">
 
-    <title>Blocked | Focus Zoo</title>
-    <script src="../../db/websites.js" type="module"></script>
+    <title>About us | Focus Zoo</title>
 
 </head>
 
@@ -34,42 +33,29 @@
             <a class="nav-link" href="../devtools/devtools.html">Dev Tools</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="blocked.html">Blocked Websites</a>
+            <a class="nav-link" href="../blocked/blocked.html">Blocked Websites</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../settings/settings.html">⚙</a>
+            <a class="nav-link" href="settings.html">⚙</a>
         </li>
     </ul>
 </nav>
 
+<header>
+    <h1>Settings</h1>
+</header>
 
 <main>
-
     <section>
-
-        <script src="blocked.js" type="module"></script>
-        <h1>Blocked Websites</h1>
-
-        <table class="websiteTable" id="websiteTable">
-            <thead>
-            <tr>
-                <th>Website</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-
-        <!-- Add a form for inserting websites -->
-        <form class="addWebsiteForm" id="addWebsiteForm">
-            <input type="text" id="websiteInput" placeholder="Enter Website URL" required>
-            <button class="custombtn" type="submit">Add</button>
-        </form>
+        <button class="custombtn" id="toggleDarkMode">Toggle Dark Mode</button>
+        <!-- dev-menu option -->
     </section>
+
 </main>
 
+
 <div id="footer"></div>
+
 </body>
 
 </html>

@@ -8,13 +8,13 @@
 
 .websiteTable th, .websiteTable td {
     padding: 10px;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--colorBackground);
     text-align: left;
     font-size: 14px;
 }
 
 .websiteTable th {
-    background-color: var(--colorLightGrey);
+    background-color: var(--colorAccentBackground);
 }
 
 .addWebsiteForm {
@@ -28,6 +28,8 @@
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+    color: var(--colorText);
+    background-color: var(--colorAccentBackground);
 }
 
 .custombtn {

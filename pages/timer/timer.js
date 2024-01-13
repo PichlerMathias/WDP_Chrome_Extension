@@ -40,7 +40,10 @@ clock.initClock(function (timerIsRunning) {
 
         clock.getRemainingSeconds(function (remainingSeconds, limit) {
             hideStartButtons();
-            clock.startClock(remainingSeconds, limit, showStartButtons);
+            clock.startClock(remainingSeconds, limit, function () {
+                showStartButtons();
+                //alert('fzft');
+            });
         });
     }
 
