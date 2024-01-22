@@ -1,3 +1,5 @@
+// function that overrides the content of the blocked page
+// with a timer and the option to cancel the timer or unblock the website
 (async () => {
     const websitesScript = await import(chrome.runtime.getURL('./db/websites.js'));
     const clockScript = await import(chrome.runtime.getURL('./pages/timer/clock.js'));
@@ -53,6 +55,39 @@
 
 const blockedHead =`
                         <style>
+:root {
+    /* colors */
+    --colorBackground: #F5F5F5FF;
+    --colorAccentBackground: #e5e4e4;
+
+    --colorButton: #a3dec9;
+    --colorButtonOutline: #3E9C80;
+    --colorButtonText: #127054;
+
+    --colorLightRed: #FFB38A;
+    --colorLightYellow: #FFD18A;
+
+    --colorText: #232323;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colorBackground: #232323;
+        --colorAccentBackground: #414040;
+
+        --colorButton: #22655d;
+        --colorButtonOutline: #255b49;
+        --colorButtonText: #b5f3db;
+
+        --colorText: #F5F5F5FF;
+    }
+}
+
+body {
+    background-color: var(--colorBackground);
+    color: var(--colorText);
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -66,18 +101,17 @@ const blockedHead =`
     gap: 10px; 
 }
 
-/*cannot use main.css, the styles will not be applied*/
 .custombtn {
-    background-color: #a3dec9;
-    border: 2px solid #3E9C80;
+    background-color: var(--colorButton);
+    border: 2px solid var(--colorButtonOutline);
     padding: 8px 16px;
-    color: #127054;
+    color: var(--colorButtonText);
     font-weight: bold;
 }
 
 .custombtn:hover {
-    background-color: #f2f2f2;
-    color: #000000;
+    background-color: var(--colorAccentBackground);
+    color: var(--colorText);
 }
 
 p {
@@ -120,15 +154,15 @@ p {
 }
 
 .base-timer__path-remaining.green {
-    color: #83C5B1;
+    color: var(--colorButton);
 }
 
 .base-timer__path-remaining.orange {
-    color: #FFD18A;
+    color: var(--colorLightYellow);
 }
 
 .base-timer__path-remaining.red {
-    color: #FFB38A;
+    color: var(--colorLightRed);
 }
 
 .base-timer__label {

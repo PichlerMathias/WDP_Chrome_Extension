@@ -1,7 +1,7 @@
 import * as websites from "../../db/websites.js";
 import {getWebsiteList} from "../../db/websites.js";
 
-
+// adds row to table of blocked websites
 function insertRow(website) {
     const table = document.getElementById('websiteTable');
     const tbody = table.querySelector('tbody');
@@ -50,21 +50,18 @@ function refreshTable() {
 refreshTable();
 
 const addWebsiteForm = document.getElementById('addWebsiteForm');
-addWebsiteForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the default form submission
 
-    // Get the input value
+// event listener for form
+addWebsiteForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
     const websiteInput = document.getElementById('websiteInput');
     const websiteUrl = websiteInput.value;
 
     // Check if the input is not empty
     if (websiteUrl.trim() !== '') {
-        // Call the insertWebsite function with the URL
-
-
         websites.addWebsite(websiteUrl, function () {
             refreshTable();
         });
-
     }
 });
