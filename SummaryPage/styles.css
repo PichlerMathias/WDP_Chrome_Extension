@@ -66,6 +66,10 @@ p {
     font-family: var(--fontText);
 }
 
+a {
+    font-family: var(--fontText);
+}
+
 footer {
     background-color: var(--colorLightGreen);
     text-align: right;
@@ -92,6 +96,10 @@ section:last-child {
     }
 }
 
+summary {
+    font-family: var(--fontText);
+}
+
 pre {
     background-color: #f4f4f4;
     padding: 10px;
@@ -107,7 +115,7 @@ pre {
 
 .authors-section {
     display: flex;
-    /*justify-content: center;*/
+
 }
 
 .author {
