@@ -8,6 +8,7 @@ let button50 = document.getElementById("start50");
 const buttons = [button1, button5, button10, button25, button50];
 let cancel = document.getElementById("cancel");
 
+// event listeners for all timer-buttons
 button1.addEventListener("click", function () {
     clock.startNewClock(3, showStartButtons);
     hideStartButtons();

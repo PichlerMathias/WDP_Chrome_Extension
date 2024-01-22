@@ -9,9 +9,9 @@ function getChartData() {
 
             var date = new Date(countdown.date);
 
-            const day = date.getDate().toString().padStart(2, '0'); // Get the day and format it with leading zeros if needed
-            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Get the month, add 1 to get the actual month, and format it
-            const year = date.getFullYear(); // Get the full year
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const year = date.getFullYear();
 
             const formattedDate = `${day}.${month}.${year}`;
 

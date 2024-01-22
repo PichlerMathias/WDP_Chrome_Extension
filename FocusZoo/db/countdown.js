@@ -1,52 +1,41 @@
 import * as database from './database.js'
 
+// gets finished countdowns from database
 export function getAllCountdowns(callback) {
-    // Open a connection to the database
     const request = indexedDB.open('zooDb');
 
-    // Handle database open success
     request.onsuccess = function (event) {
         const db = event.target.result;
-
-        // Open a transaction on the "animals" object store
         const transaction = db.transaction('countdowns', 'readonly');
-
-        // Get a reference to the object store
         const objectStore = transaction.objectStore('countdowns');
-
-        // Use getAll to retrieve all animals in the object store
         const getAllRequest = objectStore.getAll();
 
         getAllRequest.onsuccess = function (event) {
             const countdowns = event.target.result;
 
             if (countdowns.length > 0) {
-                // Animals found
                 callback(countdowns);
             } else {
-                // No animals found
                 callback([]);
             }
-            // Close the database connection
 
             db.close();
         };
 
         getAllRequest.onerror = function (event) {
-            // Handle any errors that may occur during the request
             console.error("Error getting all countdowns:", event.target.error);
             callback([]);
             db.close();
         };
     };
 
-    // Handle database open error
     request.onerror = function (event) {
         console.error("Error opening database:", event.target.error);
         callback([]);
     };
 }
 
+// gets all animals that have been unlocked through a countdown
 export function getUnlockedAnimalIds(callback) {
     getAllCountdowns(function (countdowns) {
         var unlockedAnimals = [];
@@ -61,6 +50,7 @@ export function getUnlockedAnimalIds(callback) {
     });
 }
 
+// gets all animals that have not been unlocked
 export function getLockedAnimalIds(callback) {
     getUnlockedAnimalIds(function (unlockedAnimals) {
         let totalAnimalCount = database.getTotalAnimalCount();
@@ -86,6 +76,7 @@ export function getLockedAnimalIds(callback) {
     });
 }
 
+// creates a new countdown
 export function insertCountDown(date, length) {
 
     getLockedAnimalIds(function (lockedAnimalIds) {
@@ -122,6 +113,7 @@ export function insertCountDown(date, length) {
 
 export const countDownObjectName = "countDownObject";
 
+// sets current timer -> how much time is left
 export function setCurrentCountDownObject(dateStarted, length, callback) {
     const countDownObject = {date: dateStarted, length: length};
 
@@ -132,7 +124,7 @@ export function setCurrentCountDownObject(dateStarted, length, callback) {
 
 const currentCountdownObject = 'currentCountdownObject';
 
-
+// gets current timer
 export function getCurrentCountDownObject(callback) {
 
     chrome.storage.local.get({currentCountdownObject}, function (data) {
@@ -150,6 +142,7 @@ export function getCurrentCountDownObject(callback) {
     });
 }
 
+// calculate how many seconds are left
 export function getRemainingSeconds(callback) {
     (getCurrentCountDownObject(function (value) {
         callback(calculateRemainingSeconds(value), value == null ? 0 : value.length);
@@ -163,6 +156,7 @@ function calculateRemainingSeconds(currentCountDownObject){
         return null;
     }}
 
+// creates a new entry into the statistics page with a random animal
 export function insertCountDownIfFinished(callback) {
     console.log("insertCountDownIfFinished called");
     (getCurrentCountDownObject(function (value) {
