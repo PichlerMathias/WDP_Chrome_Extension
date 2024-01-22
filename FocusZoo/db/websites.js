@@ -6,6 +6,7 @@ const defaultWebsiteList = [
 
 const webSiteListName = 'websiteList';
 
+// initializes the list of blocked websites
 export function initWebsites(callback) {
     getWebsiteList(function (retrievedList) {
         if(retrievedList == null){

@@ -1,7 +1,7 @@
 
 html, body {
-    width: 750px; /* max width */
-    height: 600px; /* max height */
+    width: 750px; /* max width for chrome extension */
+    height: 600px; /* max height for chrome extension */
     margin: 0;
     background-color: var(--colorBackground);
     color: var(--colorText);
@@ -20,7 +20,6 @@ main {
 
 :root {
     /* colors */
-    /* base: EC905E */
     --colorNavbar: #456D9A;
     --colorNavbarText: #caddff;
 
