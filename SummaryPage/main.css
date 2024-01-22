@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --colorBlue: #456D9A;
+    --colorDarkBlue: #233951;
+    --colorWhite: #F5F5F5FF;
+    --colorLightBlue: #caddff;
+    --colorLightGreen: #a3dec9;
+    --colorGreen: #3E9C80;
+    --colorDarkGreen: #127054;
+    --fontHeading: "Calibri", sans-serif;
+    --fontText: "Calibri Light", sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 1000px; 
+    margin: 0 20px; 
+}
+
+header {
+    color: var(--colorWhite);
+    font-family: var(--fontHeading);
+    text-decoration: none;
+    background-color: var(--colorBlue);
+    padding: 10px;
+}
+
+h1 {
+    font-size: 30px;
+    padding-top: 10px;
+}
+
+h2 {
+    font-size: 25px;
+    color: var(--colorBlue);
+}
+
+h3 {
+    font-size: 20px;
+    color: var(--colorGreen);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fontHeading);
+}
+
+p {
+    font-family: var(--fontText);
+}
+
+footer {
+    background-color: var(--colorLightGreen);
+    text-align: right;
+    padding-right: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+section:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .content-wrapper {
+        margin: 0; 
+    }
+}
+
+pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ccc;
+    white-space: pre-wrap;
+}
+
+
+.image {
+    width: auto;
+    height: 250px;
+}
+
+.authors-section {
+    display: flex;
+    /*justify-content: center;*/
+}
+
+.author {
+    margin-right: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.author h2 {
+    padding-top: 8px;
+}
