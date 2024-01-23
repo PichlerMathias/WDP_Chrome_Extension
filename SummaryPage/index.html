@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href=styles.css>
 
     <title>About us | Focus Zoo</title>
@@ -47,43 +48,57 @@
             <h3>Startseite</h3>
             <p>Die Startseite öffnet sich nach der Installation der Chrome Extension und beschreibt die Idee des
                 Projekts.</p>
-            <img src="./img/index_light.png" alt="image of index-page" class="image">
-            <img src="./img/index_dark.png" alt="image of index-page in dark mode" class="image">
+            <div class="image-grid">
+                <img src="./img/index_light.png" alt="image of index-page">
+                <img src="./img/index_dark.png" alt="image of index-page in dark mode">
+            </div>
             <h3>Timer</h3>
             <p>Auf der Timer-Seite können Timer gestartet und gestoppt werden. Läuft ein Timer, sieht man eine Animation
                 der noch verbleibenden Zeit.</p>
-            <img src="./img/timer_light.png" alt="image of timer-page" class="image">
-            <img src="./img/timerRunning_light.png" alt="image of timer running" class="image">
-            <br>
-            <img src="./img/timer_dark.png" alt="image of timer-page in dark mode" class="image">
-            <img src="./img/timerRunning_dark.png" alt="image of timer running in dark mode" class="image">
+            <div class="image-grid">
+                <img src="./img/timer_light.png" alt="image of timer-page">
+                <img src="./img/timerRunning_light.png" alt="image of timer running">
+                <img src="./img/timer_dark.png" alt="image of timer-page in dark mode">
+                <img src="./img/timerRunning_dark.png" alt="image of timer running in dark mode">
+            </div>
             <h3>Statistics</h3>
             <p>Die Statistik-Seite zeigt bereits absolvierte Timer, inklusive Datum und freigeschaltetem Tier.</p>
-            <img src="./img/statistics_light.png" alt="image of statistics-page" class="image">
-            <img src="./img/statistics_dark.png" alt="image of statistics-page in dark mode" class="image">
+            <div class="image-grid">
+                <img src="./img/statistics_light.png" alt="image of statistics-page">
+                <img src="./img/statistics_dark.png" alt="image of statistics-page in dark mode">
+            </div>
             <h3>Zoo</h3>
             <p>Im Zoo sieht man, welche Tiere schon freigeschaltet wurden.</p>
-            <img src="./img/collection_light.png" alt="image of zoo-page" class="image">
-            <img src="./img/collection_dark.png" alt="image of zoo-page in dark mode" class="image">
+            <div class="image-grid">
+                <img src="./img/collection_light.png" alt="image of zoo-page">
+                <img src="./img/collection_dark.png" alt="image of zoo-page in dark mode">
+            </div>
             <h3>Authors</h3>
             <p>Die Autoren-Seite zeigt das Projektteam.</p>
-            <img src="./img/authors_light.png" alt="image of authors-page" class="image">
-            <img src="./img/authors_dark.png" alt="image of authors-page in dark mode" class="image">
+            <div class="image-grid">
+                <img src="./img/authors_light.png" alt="image of authors-page">
+                <img src="./img/authors_dark.png" alt="image of authors-page in dark mode">
+            </div>
             <h3>Dev-Tools</h3>
-            <p>Die Dev-Tools ermöglichen das einfügen von abgeschlossenen Timern, um die Funktionalität präsentieren zu
+            <p>Die Dev-Tools ermöglichen das Einfügen von abgeschlossenen Timern, um die Funktionalität präsentieren zu
                 können.</p>
-            <img src="./img/devTools_light.png" alt="image of dev-tools-page" class="image">
-            <img src="./img/devTools_dark.png" alt="image of dev-tools-page in dark mode" class="image">
+            <div class="image-grid">
+                <img src="./img/devTools_light.png" alt="image of dev-tools-page">
+                <img src="./img/devTools_dark.png" alt="image of dev-tools-page in dark mode">
+            </div>
             <h3>Blocked Pages Management</h3>
             <p>Auf dieser Seite kann man verwalten, welche Seiten bei laufenden Timern blockiert werden sollen.</p>
-            <img src="./img/blocked_light.png" alt="image of blocked-page" class="image">
-            <img src="./img/blocked_dark.png" alt="image of blocked-page in dark mode" class="image">
+            <div class="image-grid">
+                <img src="./img/blocked_light.png" alt="image of blocked-page">
+                <img src="./img/blocked_dark.png" alt="image of blocked-page in dark mode">
+            </div>
             <h3>Blocked Social Media Pages</h3>
             <p>Hier sieht man was passiert, wenn Seiten bei laufenden Timern blockiert werden. Dabei wird der Inhalt der
                 Seite überschreiben und der Timer angezeigt.</p>
-            <img src="./img/blockedOverride_light.png" alt="image of override of social media" class="image">
-            <img src="./img/blockedOverride_dark.png" alt="image of override of social media in dark mode"
-                 class="image">
+            <div class="image-grid">
+                <img src="./img/blockedOverride_light.png" alt="image of override of social media">
+                <img src="./img/blockedOverride_dark.png" alt="image of override of social media in dark mode">
+            </div>
         </section>
 
         <section>
@@ -130,7 +145,7 @@
   "content_scripts": [
     {
       "matches": [
-        "<<!---->all_urls>"
+        "&lt;all_urls&gt;"
       ],
       "js": [
         "pages/blocked_override/blocked_override.js"
@@ -146,7 +161,7 @@
         "db/websites.js"
       ],
       "matches": [
-        "<<!---->all_urls>"
+        "&lt;all_urls&gt;"
       ]
     }
   ]
@@ -317,7 +332,7 @@ export function removeWebsite(website, callback) {
   "content_scripts": [
     {
       "matches": [
-        "<<!---->all_urls>"
+        "&lt;all_urls&gt;"
       ],
       "js": [
         "pages/blocked_override/blocked_override.js"
@@ -333,7 +348,7 @@ export function removeWebsite(website, callback) {
         "db/websites.js"
       ],
       "matches": [
-        "<<!---->all_urls>"
+        "&lt;all_urls&gt;"
       ]
     }
   ]
@@ -341,7 +356,7 @@ export function removeWebsite(website, callback) {
                 </pre>
             </details>
             <details>
-                <summary><b>Codebeispiel: Überschreiben von Blockierten Seiten in blocked_override.js</b></summary>
+                <summary><b>Codebeispiel: Überschreiben von blockierten Seiten in blocked_override.js</b></summary>
                 <pre>
                 <code>
 // function that overrides the content of the blocked page with a timer and the option to cancel the timer or unblock the website
@@ -435,7 +450,9 @@ export function removeWebsite(website, callback) {
                 Außerdem wurde bereits zu Beginn in <a href="https://www.notion.so/product">Notion</a> ein einfaches
                 Ticket-System aufgesetzt, womit die Arbeit strukturiert und übersichtlich dargestellt wurde.
             </p>
-            <img src="./img/tickets.png" alt="Tickets in notion" class="image">
+            <div class="image-grid">
+                <img src="./img/tickets.png" alt="Tickets in notion">
+            </div>
 
 
         </section>
@@ -467,21 +484,6 @@ export function removeWebsite(website, callback) {
             <h3>Chrome Local Storage</h3>
             <p>@Paula Santamaria schreibt in Ihrem Blog über den Chrome Local Storage: <a href="https://dev.to/paulasantamaria/chrome-extensions-local-storage-1b34">dev.to</a></p>
 
-        </section>
-
-        <h2>Projektteam</h2>
-        <section class="authors-section">
-            <div class="author">
-                <img src="./img/Mathias.jpeg" alt="image of Mathias Pichler" class="image">
-                <h2>Mathias Pichler</h2>
-                <p></p>
-            </div>
-
-            <div class="author">
-                <img src="./img/Mariella.jpeg" alt="image of Mariella Wildauer" class="image">
-                <h2>Mariella Wildauer</h2>
-                <p></p>
-            </div>
         </section>
 
     </div>
