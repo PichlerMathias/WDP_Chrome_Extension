@@ -123,7 +123,7 @@ section:last-child {
     gap: 15px;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 700px) {
     .image-grid {
         grid-template-columns: repeat(2, 1fr); /* Two columns for screens wider than 500px */
     }
