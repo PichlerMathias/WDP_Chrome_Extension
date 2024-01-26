@@ -1,0 +1,151 @@
+
+:root {
+    --colorNavbar: #456D9A;
+    --colorNavbarText: #caddff;
+
+    --colorBackground: #F5F5F5FF;
+    --colorAccentBackground: #e5e4e4;
+
+    --colorButton: #a3dec9;
+    --colorButtonOutline: #3E9C80;
+    --colorButtonText: #127054;
+
+    --colorText: #232323;
+
+    --fontHeading: "Calibri", sans-serif;
+    --fontText: "Calibri Light", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colorNavbar: #8a9fc9;
+        --colorNavbarText: #253a52;
+
+        --colorBackground: #232323;
+        --colorAccentBackground: #414040;
+
+        --colorButton: #22655d;
+        --colorButtonOutline: #255b49;
+        --colorButtonText: #b5f3db;
+
+        --colorText: #F5F5F5FF;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--colorText);
+    background-color: var(--colorBackground);
+}
+
+main {
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 20px;
+}
+
+header {
+    color: var(--colorNavbarText);
+    font-family: var(--fontHeading);
+    text-decoration: none;
+    background-color: var(--colorNavbar);
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px;
+    padding-top: 10px;
+}
+
+h2 {
+    font-size: 25px;
+    color: var(--colorNavbar);
+}
+
+h3 {
+    font-size: 20px;
+    color: var(--colorButtonText);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fontHeading);
+}
+
+p {
+    font-family: var(--fontText);
+}
+
+a {
+    font-family: var(--fontText);
+    color: var(--colorNavbar);
+}
+
+footer {
+    background-color: var(--colorButton);
+    text-align: right;
+    padding-right: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--colorAccentBackground);
+}
+
+section:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+@media (min-width: 700px) {
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for wide screens */
+    }
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+}
+
+
+summary {
+    font-family: var(--fontText);
+}
+
+pre {
+    color: var(--colorText);
+    background-color: var(--colorAccentBackground);
+    padding: 10px;
+    border: 1px solid var(--colorButton);
+    white-space: pre-wrap;
+}
+
+
+
