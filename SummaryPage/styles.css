@@ -119,13 +119,13 @@ section:last-child {
 
 .image-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Initially, set to a single column for small screens */
+    grid-template-columns: 1fr;
     gap: 15px;
 }
 
 @media (min-width: 700px) {
     .image-grid {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for screens wider than 500px */
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for wide screens */
     }
 }
 
